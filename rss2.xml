@@ -3,19 +3,47 @@
   xmlns:atom="http://www.w3.org/2005/Atom"
   xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Tmr&#39;s Blog</title>
-    <link>https://HNUrookie1.github.io/</link>
+    <title>XiaoYi Blog</title>
+    <link>https://xiaooyi.github.io/</link>
     
-    <atom:link href="https://hnurookie1.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://xiaooyi.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Sat, 26 Jul 2025 14:46:37 GMT</pubDate>
+    <pubDate>Mon, 28 Jul 2025 14:56:28 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
+      <title>前端第二、第三天</title>
+      <link>https://xiaooyi.github.io/2025/07/28/%E5%89%8D%E7%AB%AF%E7%AC%AC%E4%BA%8C%E3%80%81%E7%AC%AC%E4%B8%89%E5%A4%A9/</link>
+      <guid>https://xiaooyi.github.io/2025/07/28/%E5%89%8D%E7%AB%AF%E7%AC%AC%E4%BA%8C%E3%80%81%E7%AC%AC%E4%B8%89%E5%A4%A9/</guid>
+      <pubDate>Mon, 28 Jul 2025 13:41:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;blockquote&gt;
+&lt;p&gt;前端的语法真的是别扭，老不习惯了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;本篇文章是苍穹外卖前端的学习笔记。&lt;/p&gt;
+&lt;p&gt;前提条件：后端项目启动完成，后端服务地址为&lt;a href=&quot;http://localhost:8080。&quot;&gt;http:/</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<blockquote><p>前端的语法真的是别扭，老不习惯了。</p></blockquote><p>本篇文章是苍穹外卖前端的学习笔记。</p><p>前提条件：后端项目启动完成，后端服务地址为<a href="http://localhost:8080。">http://localhost:8080。</a></p><h1 id="前端环境搭建"><a href="#前端环境搭建" class="headerlink" title="前端环境搭建"></a>前端环境搭建</h1><h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><ul><li>node.js &gt; 14.17.0 <strong>(typescript 要求 node.js版本大于 14.17.0 以上)</strong></li><li>vue 2.6.10</li><li>Element UI 2.12.0</li><li>axios 0.19.0</li><li>vuex 3.1.1</li><li>vue-router 3.1.2</li><li>typescript 5.x具体不记得了</li></ul><h2 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h2><p>注意到导入的初始工程里面并没有前端项目运行所以来的js包，需要执行npm install 命令来安装。生成的依赖包在node_moudles目录。如下图示。</p><p><img src="/2025/07/28/%E5%89%8D%E7%AB%AF%E7%AC%AC%E4%BA%8C%E3%80%81%E7%AC%AC%E4%B8%89%E5%A4%A9/1.png"></p><p>然后运行npm run serve启动前端项目。</p><blockquote><p> tips:什么时候用dev，什么时候用serve？只需要看package.json里面的script配置，与它保持一致。</p></blockquote><p><img src="/2025/07/28/%E5%89%8D%E7%AB%AF%E7%AC%AC%E4%BA%8C%E3%80%81%E7%AC%AC%E4%B8%89%E5%A4%A9/2.png"></p><p>前端项目启动如下：</p><p><img src="/2025/07/28/%E5%89%8D%E7%AB%AF%E7%AC%AC%E4%BA%8C%E3%80%81%E7%AC%AC%E4%B8%89%E5%A4%A9/3.png"></p><h2 id="登录的流程"><a href="#登录的流程" class="headerlink" title="登录的流程"></a>登录的流程</h2><ol><li>获取登录页面路由地址</li><li>从main.ts中找到路由文件（&#x2F;router&#x2F;index.ts）</li><li>从路由文件中找到登录视图组件</li><li>从登录视图组件中找到登录的方法</li><li>找到登录方法后，跟踪登录方法的执行流程。具体来说，就是观察前后端的交互过程，例如前端如何发送axios请求，后端返回的数据格式等。</li></ol><h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><p>员工的分页查询比较简单，这里以套餐的分页查询为例。</p><h3 id="需求分析和接口设计"><a href="#需求分析和接口设计" class="headerlink" title="需求分析和接口设计"></a>需求分析和接口设计</h3><p>我们自己需要根据产品的原型来进行需求分析，并设计出对应的接口。产品的原型如下：</p><p><img src="/2025/07/28/%E5%89%8D%E7%AB%AF%E7%AC%AC%E4%BA%8C%E3%80%81%E7%AC%AC%E4%B8%89%E5%A4%A9/4.png"></p><p>不难分析，我们的业务规则是：</p><ul><li>根据页码展示套餐的信息，例如套餐名称、分类、状态等</li><li>每页展示10条数据</li><li>分页查询时，可以选择查询的条件</li></ul><p>分析完需求后，就要设计对应的接口。要展示出套餐的分页数据，需要两个接口：</p><ul><li>分类查询接口（用于套餐分类下拉框中分类数据的展示）</li><li>套餐分页查询接口</li></ul><p>（1）分类查询接口</p><p> <strong>基本信息</strong></p><p><strong>Path：</strong> &#x2F;admin&#x2F;category&#x2F;list</p><p><strong>Method：</strong> GET</p><p><strong>请求参数</strong></p><p><strong>Query</strong></p><table><thead><tr><th>参数名称</th><th>是否必须</th><th>示例</th><th>备注</th></tr></thead><tbody><tr><td>type</td><td>否</td><td>2</td><td>分类类型：1为菜品分类，2为套餐分类</td></tr></tbody></table><p><strong>返回数据</strong></p><table><thead><tr><th>名称</th><th>类型</th><th>是否必须</th><th>默认值</th><th>备注</th><th>其他信息</th></tr></thead><tbody><tr><td>code</td><td>integer</td><td>必须</td><td></td><td></td><td>format: int32</td></tr><tr><td>data</td><td>object []</td><td>非必须</td><td></td><td></td><td>item 类型: object</td></tr><tr><td>├─ createTime</td><td>string</td><td>非必须</td><td></td><td></td><td>format: date-time</td></tr><tr><td>├─ createUser</td><td>integer</td><td>非必须</td><td></td><td></td><td>format: int64</td></tr><tr><td>├─ id</td><td>integer</td><td>非必须</td><td></td><td></td><td>format: int64</td></tr><tr><td>├─ name</td><td>string</td><td>非必须</td><td></td><td></td><td></td></tr><tr><td>├─ sort</td><td>integer</td><td>非必须</td><td></td><td></td><td>format: int32</td></tr><tr><td>├─ status</td><td>integer</td><td>非必须</td><td></td><td></td><td>format: int32</td></tr><tr><td>├─ type</td><td>integer</td><td>非必须</td><td></td><td></td><td>format: int32</td></tr><tr><td>├─ updateTime</td><td>string</td><td>非必须</td><td></td><td></td><td>format: date-time</td></tr><tr><td>├─ updateUser</td><td>integer</td><td>非必须</td><td></td><td></td><td>format: int64</td></tr><tr><td>msg</td><td>string</td><td>非必须</td><td></td><td></td><td></td></tr></tbody></table><p>这个接口用来查询套餐分类下具体的套餐类别，例如KFC套餐、麦当劳套餐等。</p><p>（2）套餐分页查询接口</p><p> <strong>基本信息</strong></p><p><strong>Path：</strong> &#x2F;admin&#x2F;setmeal&#x2F;page</p><p><strong>Method：</strong> GET</p><p><strong>请求参数</strong></p><p><strong>Query</strong></p><table><thead><tr><th>参数名称</th><th>是否必须</th><th>示例</th><th>备注</th></tr></thead><tbody><tr><td>categoryId</td><td>否</td><td></td><td>分类id</td></tr><tr><td>name</td><td>否</td><td></td><td>套餐名称</td></tr><tr><td>page</td><td>是</td><td></td><td>页码</td></tr><tr><td>pageSize</td><td>是</td><td></td><td>每页记录数</td></tr><tr><td>status</td><td>否</td><td></td><td>套餐起售状态</td></tr></tbody></table><p><strong>返回数据</strong></p><table><thead><tr><th>名称</th><th>类型</th><th>是否必须</th><th>默认值</th><th>备注</th><th>其他信息</th></tr></thead><tbody><tr><td>code</td><td>number</td><td>必须</td><td></td><td></td><td></td></tr><tr><td>msg</td><td>null</td><td>非必须</td><td></td><td></td><td></td></tr><tr><td>data</td><td>object</td><td>非必须</td><td></td><td></td><td></td></tr><tr><td>├─ total</td><td>number</td><td>非必须</td><td></td><td></td><td></td></tr><tr><td>├─ records</td><td>object []</td><td>非必须</td><td></td><td></td><td>item 类型: object</td></tr><tr><td>├─ id</td><td>number</td><td>必须</td><td></td><td></td><td></td></tr><tr><td>├─ categoryId</td><td>number</td><td>必须</td><td></td><td></td><td></td></tr><tr><td>├─ name</td><td>string</td><td>必须</td><td></td><td></td><td></td></tr><tr><td>├─ price</td><td>number</td><td>必须</td><td></td><td></td><td></td></tr><tr><td>├─ status</td><td>number</td><td>必须</td><td></td><td></td><td></td></tr><tr><td>├─ description</td><td>string</td><td>必须</td><td></td><td></td><td></td></tr><tr><td>├─ image</td><td>string</td><td>必须</td><td></td><td></td><td></td></tr><tr><td>├─ updateTime</td><td>string</td><td>必须</td><td></td><td></td><td></td></tr><tr><td>├─ categoryName</td><td>string</td><td>必须</td><td></td><td></td><td></td></tr></tbody></table><p>查询参数中，只有page和pageSize是必须的，另外三个都是可选的。</p><h3 id="代码开发"><a href="#代码开发" class="headerlink" title="代码开发"></a>代码开发</h3><p>要进行套餐管理的代码开发，就要根据路由文件router.ts找到对应的组件。可以看到，套餐管理页面（组件）的位置为：src&#x2F;view&#x2F;setmeal&#x2F;index.vue。我们只需要在此文件中开发套餐分页查询的前端代码即可。而整个前端代码的开发大致分为以下几个关键步骤：</p><ol><li>根据产品原型，制作页面的头部效果（包含输入框，下拉框，查询按钮等）</li><li>填充套餐分类下拉框中的分类数据</li><li>为查询按钮绑定事件，发送axios请求，获得后端返回的数据</li><li>提供vue的初始化方法，在页面加载完成后就查询分页数据</li><li>使用ElmentUI提供的表格组件展示分页数据</li><li>使用ElementUI提供的分页条组件实现翻页的效果</li></ol><blockquote><p>一般来说，我们每开发完成一步，都需要进行测试，然后在继续进行开发</p></blockquote><h4 id="制作页面头部效果"><a href="#制作页面头部效果" class="headerlink" title="制作页面头部效果"></a>制作页面头部效果</h4><p>产品原型如下：</p><p><img src="/2025/07/28/%E5%89%8D%E7%AB%AF%E7%AC%AC%E4%BA%8C%E3%80%81%E7%AC%AC%E4%B8%89%E5%A4%A9/5.png"></p><p>参考ElementUI提供的文档，进行修改即可。（man！我觉得挺复杂的，未完，待续）</p>]]></content:encoded>
+      
+      
+      
+      <category domain="https://xiaooyi.github.io/tags/Vue/">Vue</category>
+      
+      
+      <comments>https://xiaooyi.github.io/2025/07/28/%E5%89%8D%E7%AB%AF%E7%AC%AC%E4%BA%8C%E3%80%81%E7%AC%AC%E4%B8%89%E5%A4%A9/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
       <title>前端第一天</title>
-      <link>https://hnurookie1.github.io/2025/07/26/%E5%89%8D%E7%AB%AF%E7%AC%AC%E4%B8%80%E5%A4%A9/</link>
-      <guid>https://hnurookie1.github.io/2025/07/26/%E5%89%8D%E7%AB%AF%E7%AC%AC%E4%B8%80%E5%A4%A9/</guid>
+      <link>https://xiaooyi.github.io/2025/07/26/%E5%89%8D%E7%AB%AF%E7%AC%AC%E4%B8%80%E5%A4%A9/</link>
+      <guid>https://xiaooyi.github.io/2025/07/26/%E5%89%8D%E7%AB%AF%E7%AC%AC%E4%B8%80%E5%A4%A9/</guid>
       <pubDate>Sat, 26 Jul 2025 14:24:00 GMT</pubDate>
       
         
@@ -30,17 +58,17 @@
       
       
       
-      <category domain="https://HNUrookie1.github.io/tags/Vue/">Vue</category>
+      <category domain="https://xiaooyi.github.io/tags/Vue/">Vue</category>
       
       
-      <comments>https://hnurookie1.github.io/2025/07/26/%E5%89%8D%E7%AB%AF%E7%AC%AC%E4%B8%80%E5%A4%A9/#disqus_thread</comments>
+      <comments>https://xiaooyi.github.io/2025/07/26/%E5%89%8D%E7%AB%AF%E7%AC%AC%E4%B8%80%E5%A4%A9/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>MySQL密码忘记怎么重置密码</title>
-      <link>https://hnurookie1.github.io/2025/06/09/mysql%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8%E5%90%8E%E8%87%AA%E5%8A%A8%E5%81%9C%E6%AD%A2/</link>
-      <guid>https://hnurookie1.github.io/2025/06/09/mysql%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8%E5%90%8E%E8%87%AA%E5%8A%A8%E5%81%9C%E6%AD%A2/</guid>
+      <link>https://xiaooyi.github.io/2025/06/09/mysql%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8%E5%90%8E%E8%87%AA%E5%8A%A8%E5%81%9C%E6%AD%A2/</link>
+      <guid>https://xiaooyi.github.io/2025/06/09/mysql%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8%E5%90%8E%E8%87%AA%E5%8A%A8%E5%81%9C%E6%AD%A2/</guid>
       <pubDate>Sun, 08 Jun 2025 17:27:00 GMT</pubDate>
       
         
@@ -56,14 +84,14 @@
       
       
       
-      <comments>https://hnurookie1.github.io/2025/06/09/mysql%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8%E5%90%8E%E8%87%AA%E5%8A%A8%E5%81%9C%E6%AD%A2/#disqus_thread</comments>
+      <comments>https://xiaooyi.github.io/2025/06/09/mysql%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8%E5%90%8E%E8%87%AA%E5%8A%A8%E5%81%9C%E6%AD%A2/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>杂谈2</title>
-      <link>https://hnurookie1.github.io/2025/06/09/%E5%90%83%E4%B8%80%E5%A0%91%E9%95%BF%E4%B8%80%E6%99%BA/</link>
-      <guid>https://hnurookie1.github.io/2025/06/09/%E5%90%83%E4%B8%80%E5%A0%91%E9%95%BF%E4%B8%80%E6%99%BA/</guid>
+      <link>https://xiaooyi.github.io/2025/06/09/%E5%90%83%E4%B8%80%E5%A0%91%E9%95%BF%E4%B8%80%E6%99%BA/</link>
+      <guid>https://xiaooyi.github.io/2025/06/09/%E5%90%83%E4%B8%80%E5%A0%91%E9%95%BF%E4%B8%80%E6%99%BA/</guid>
       <pubDate>Sun, 08 Jun 2025 17:26:00 GMT</pubDate>
       
         
@@ -76,18 +104,18 @@
       <content:encoded><![CDATA[<p>前几天接了一个python大作业，要求是爬取一个文本数据，然后进行数据分析，代码比较简单而且有模板可以套用。想说的是什么：事先一定要和甲方谈好需求，包括他们在哪里要求跑程序。这次就是没说清环境，我在本地跑的好好的，到了甲方那里不会配置环境，结果又帮他配置环境，到头来搞得很麻烦。所以说，和甲方讲好需求很重要。</p>]]></content:encoded>
       
       
-      <category domain="https://HNUrookie1.github.io/categories/Life-Record/">Life Record</category>
+      <category domain="https://xiaooyi.github.io/categories/Life-Record/">Life Record</category>
       
       
       
-      <comments>https://hnurookie1.github.io/2025/06/09/%E5%90%83%E4%B8%80%E5%A0%91%E9%95%BF%E4%B8%80%E6%99%BA/#disqus_thread</comments>
+      <comments>https://xiaooyi.github.io/2025/06/09/%E5%90%83%E4%B8%80%E5%A0%91%E9%95%BF%E4%B8%80%E6%99%BA/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>杂谈1</title>
-      <link>https://hnurookie1.github.io/2025/06/09/%E6%88%91%E6%98%AF%E8%B0%81%EF%BC%8C%E6%88%91%E6%98%AF%E4%B8%80%E4%B8%AA%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E4%BA%BA/</link>
-      <guid>https://hnurookie1.github.io/2025/06/09/%E6%88%91%E6%98%AF%E8%B0%81%EF%BC%8C%E6%88%91%E6%98%AF%E4%B8%80%E4%B8%AA%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E4%BA%BA/</guid>
+      <link>https://xiaooyi.github.io/2025/06/09/%E6%88%91%E6%98%AF%E8%B0%81%EF%BC%8C%E6%88%91%E6%98%AF%E4%B8%80%E4%B8%AA%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E4%BA%BA/</link>
+      <guid>https://xiaooyi.github.io/2025/06/09/%E6%88%91%E6%98%AF%E8%B0%81%EF%BC%8C%E6%88%91%E6%98%AF%E4%B8%80%E4%B8%AA%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E4%BA%BA/</guid>
       <pubDate>Sun, 08 Jun 2025 17:26:00 GMT</pubDate>
       
         
@@ -100,20 +128,20 @@
       <content:encoded><![CDATA[<p>有人为了家族兴旺而活，他觉得自己的人生很有价值，很幸福；也有人无所羁绊，只为了自由而活，他也觉得自己很幸福。<br>有人奔波忙碌，但是精神饱满，斗志昂扬；也有人平平淡淡，也知足常乐，过的安详。<br>我们总想探讨哪种人才是人生的真谛，这些到底是对是错？但其实大多时候，不过是基于你的精神世界，哪种是你真实想要的罢了。<br>人生的悲剧不在于你选了哪种，而在于你所选的，不是你真心认可的。例如：周围的人，都跟你说，考个编，过个安稳日子才是最香的。<br>这话对不对？对于那些真心认可这种生活的人就对，而对于那些没有主见，不知道自己想要什么的人未必就对。<br>所以，一切都回到了起点，先搞清楚“我是谁？我是一个什么样的人”的问题，这很重要。</p><p><img src="/images/%E6%9C%88%E5%85%89%E4%B9%8B%E4%B8%8B.jpg" alt="月光之下"></p>]]></content:encoded>
       
       
-      <category domain="https://HNUrookie1.github.io/categories/%E9%9A%8F%E7%AC%94%E6%9D%82%E8%B0%88/">随笔杂谈</category>
+      <category domain="https://xiaooyi.github.io/categories/%E9%9A%8F%E7%AC%94%E6%9D%82%E8%B0%88/">随笔杂谈</category>
       
       
-      <category domain="https://HNUrookie1.github.io/tags/%E6%B4%BB%E7%9D%80%E7%9A%84%E6%84%8F%E4%B9%89/">活着的意义</category>
+      <category domain="https://xiaooyi.github.io/tags/%E6%B4%BB%E7%9D%80%E7%9A%84%E6%84%8F%E4%B9%89/">活着的意义</category>
       
       
-      <comments>https://hnurookie1.github.io/2025/06/09/%E6%88%91%E6%98%AF%E8%B0%81%EF%BC%8C%E6%88%91%E6%98%AF%E4%B8%80%E4%B8%AA%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E4%BA%BA/#disqus_thread</comments>
+      <comments>https://xiaooyi.github.io/2025/06/09/%E6%88%91%E6%98%AF%E8%B0%81%EF%BC%8C%E6%88%91%E6%98%AF%E4%B8%80%E4%B8%AA%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E4%BA%BA/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>杂谈3</title>
-      <link>https://hnurookie1.github.io/2024/09/21/Poem/</link>
-      <guid>https://hnurookie1.github.io/2024/09/21/Poem/</guid>
+      <link>https://xiaooyi.github.io/2024/09/21/Poem/</link>
+      <guid>https://xiaooyi.github.io/2024/09/21/Poem/</guid>
       <pubDate>Sat, 21 Sep 2024 06:45:00 GMT</pubDate>
       
         
@@ -126,20 +154,20 @@
       <content:encoded><![CDATA[<h1 id="《孙权劝学》司马光"><a href="#《孙权劝学》司马光" class="headerlink" title="《孙权劝学》司马光"></a>《孙权劝学》司马光</h1><p>初，权谓吕蒙曰：“卿今当涂掌事，不可不学！”蒙辞以军中多务。权曰：“孤岂欲卿治经为博士邪！但当涉猎，见往事耳。卿言多务，孰若孤？孤常读书，自以为大有所益。”蒙乃始就学。及鲁肃过寻阳，与蒙论议，大惊曰：<strong>“卿今者才略，非复吴下阿蒙！”</strong>蒙曰：<strong>“士别三日，即更刮目相待，大兄何见事之晚乎！”</strong>肃遂拜蒙母，结友而别。</p><p>译文：</p><p>起初，孙权对吕蒙说：“你现在掌管政事，不可以不学习！”吕蒙用军中事务繁多来推托。孙权说：“我难道想要你研究儒家经典，成为专掌经学传授的学官吗？我只是让你应当粗略地阅读，了解历史。你说军务繁多，谁比得上我事务多呢？我经常读书，自己觉得获益颇多。”吕蒙于是开始学习。等到鲁肃到寻阳的时候，鲁肃和吕蒙一起讨论议事，鲁肃十分吃惊地说：“你现在军事方面的才干和谋略，不再是在吴下时没有才学的阿蒙了！”吕蒙说：“与读书的人分别几天，就应当用新的眼光看待，大兄你知晓事情为什么这么晚呢？”于是鲁肃拜见吕蒙的母亲，和吕蒙结为好友后离开了。</p><p>感悟：</p><p>我们不能以一成不变的事物看待他人，要以开放的眼光看待事物。</p><h1 id="《念奴娇·赤壁怀古》苏轼"><a href="#《念奴娇·赤壁怀古》苏轼" class="headerlink" title="《念奴娇·赤壁怀古》苏轼"></a>《念奴娇·赤壁怀古》苏轼</h1><p>大江东去，浪淘尽，千古风流人物。<br>故垒西边，人道是，三国周郎赤壁。<br>乱石穿空，惊涛拍岸，卷起千堆雪。<br>江山如画，一时多少豪杰。</p><p><strong>遥想公瑾当年，小乔初嫁了，雄姿英发。</strong><br>羽扇纶（guan）巾，谈笑间，樯橹灰飞烟灭。(樯橹 一作：强虏)<br>故国神游，多情应笑我，早生华发。<br>人生如梦，一尊还酹（lei）江月。(人生 一作：人间；尊 同：樽)</p><p>译文：</p><p>滚滚长江向东奔流而去，千百年来奔腾不息的滔滔巨浪淘尽了多少杰出的英雄人物。<br>旧日营垒的西边，有人说，那儿是三国时周瑜大破曹军的赤壁。<br>只见陡峭纷乱的岩壁耸入云霄，汹涌澎湃的巨浪拍打着江岸，卷起无数堆雪白的浪花。<br>雄壮的江山奇丽如画，一时间涌现了多少英雄豪杰。<br>我不禁遥想起当年的周公瑾，美丽的小乔刚嫁给他，英姿雄健风度翩翩神采照人。<br>手摇羽扇，头戴纶巾，谈笑之间，就将曹军的战船烧得灰飞烟灭。<br>如今我身临古战场神游往昔，应笑我多愁善感，以至于过早生出了白发。<br>人生在世犹如大梦一场，还是洒一杯酒祭献给江中伴我的明月吧！</p><p>感悟：</p><p>经历诸多事情后，才明白”遥想公瑾当年，小乔初嫁了，雄姿英发“是多么的意气风发、风华正茂。</p><h1 id="《寒窑赋》北宋-吕蒙正"><a href="#《寒窑赋》北宋-吕蒙正" class="headerlink" title="《寒窑赋》北宋 吕蒙正"></a>《寒窑赋》北宋 吕蒙正</h1><p>天有不测风云，人有旦夕祸福。蜈蚣百足，行不及蛇；雄鸡两翼，飞不过鸦。马有千里之程，无骑不能自往；人有冲天之志，非运不能自通。</p><p>盖闻：人生在世，富贵不能淫，贫贱不能移。文章盖世，孔子厄于陈邦；武略超群，太公钓于渭水。颜渊命短，殊非凶恶之徒；盗跖年长，岂是善良之辈。尧帝明圣，却生不肖之儿；瞽叟愚顽，反生大孝之子。张良原是布衣，萧何称谓县吏。晏子身无五尺，封作齐国宰相；孔明卧居草庐，能作蜀汉军师。楚霸虽雄，败于乌江自刎；汉王虽弱，竟有万里江山。李广有射虎之威，到老无封；冯唐有乘龙之才，一生不遇。韩信未遇之时，无一日三餐，及至遇行，腰悬三尺玉印，一旦时衰，死于阴人之手。</p><p>有先贫而后富，有老壮而少衰。满腹文章，白发竟然不中；才疏学浅，少年及第登科。深院宫娥，运退反为妓妾；风流妓女，时来配作夫人。</p><p>青春美女，却招愚蠢之夫；俊秀郎君，反配粗丑之妇。蛟龙未遇，潜水于鱼鳖之间；君子失时，拱手于小人之下。衣服虽破，常存仪礼之容；面带忧愁，每抱怀安之量。时遭不遇，只宜安贫守份；心若不欺，必然扬眉吐气。初贫君子，天然骨骼生成；乍富小人，不脱贫寒肌体。</p><p>天不得时，日月无光；地不得时，草木不生；水不得时，风浪不平；人不得时，利运不通。注福注禄，命里已安排定，富贵谁不欲?人若不依根基八字，岂能为卿为相?</p><p>吾昔寓居洛阳，朝求僧餐，暮宿破窖，思衣不可遮其体，思食不可济其饥，上人憎，下人厌，人道我贱，非我不弃也。今居朝堂，官至极品，位置三公，身虽鞠躬于一人之下，而列职于千万人之上，有挞百僚之杖，有斩鄙吝之剑，思衣而有罗锦千箱，思食而有珍馐百味，出则壮士执鞭，入则佳人捧觞，上人宠，下人拥。人道我贵，非我之能也，此乃时也、运也、命也。</p><p>嗟呼！人生在世，富贵不可尽用，贫贱不可自欺，听由天地循环，周而复始焉。</p><blockquote><p>感悟：时也命也！</p></blockquote><h3 id="《离思五首·其四》元稹"><a href="#《离思五首·其四》元稹" class="headerlink" title="《离思五首·其四》元稹"></a>《离思五首·其四》<strong>元稹</strong></h3><p>曾经沧海难为水，除却巫山不是云。</p><p>取次花丛懒回顾，半缘修道半缘君。</p><h3 id="《飞鸟集》片段-泰戈尔"><a href="#《飞鸟集》片段-泰戈尔" class="headerlink" title="《飞鸟集》片段 泰戈尔"></a>《飞鸟集》片段 <strong>泰戈尔</strong></h3><p>浮世三千，吾爱有三，日月与卿，日为朝，月为暮，卿为朝朝暮暮。</p><h3 id="《鹊桥仙》-秦观"><a href="#《鹊桥仙》-秦观" class="headerlink" title="《鹊桥仙》 秦观"></a>《鹊桥仙》 <strong>秦观</strong></h3><p>纤云弄巧，飞星传恨，银汉迢迢暗度。金风玉露一相逢，便胜却人间无数。</p><p>柔情似水，佳期如梦，忍顾鹊桥归路。两情若是久长时，又岂在朝朝暮暮。</p><h3 id="《江城子·乙卯正月二十日夜记梦》-苏轼"><a href="#《江城子·乙卯正月二十日夜记梦》-苏轼" class="headerlink" title="《江城子·乙卯正月二十日夜记梦》 苏轼"></a>《江城子·乙卯正月二十日夜记梦》 <strong>苏轼</strong></h3><p>十年生死两茫茫，不思量，自难忘。千里孤坟，无处话凄凉。纵使相逢应不识，尘满面，鬓如霜。</p><p>夜来幽梦忽还乡，小轩窗，正梳妆。相顾无言，惟有泪千行。料得年年肠断处，明月夜，短松冈。</p><h3 id="《上邪》"><a href="#《上邪》" class="headerlink" title="《上邪》"></a>《上邪》</h3><p>上邪！我欲与君相知，长命无绝衰。山无陵，江水为竭，冬雷震震，夏雨雪，天地合，乃敢与君绝。 </p><h3 id="《马嵬·其二》-唐-李商隐"><a href="#《马嵬·其二》-唐-李商隐" class="headerlink" title="《马嵬·其二》 唐 李商隐"></a>《马嵬·其二》 <strong>唐 李商隐</strong></h3><p>海外徒闻更九州，他生未卜此生休。</p><p>空闻虎旅传宵柝，无复鸡人报晓筹。</p><p>此日六军同驻马，当时七夕笑牵牛。</p><p>如何四纪为天子，不及卢家有莫愁。</p><blockquote><p>感悟：这几首诗词均与爱情有关，或许只有经历过才能明白其中的酸甜与苦楚吧。</p></blockquote><h3 id="《蒲松龄自勉联》"><a href="#《蒲松龄自勉联》" class="headerlink" title="《蒲松龄自勉联》"></a>《蒲松龄自勉联》</h3><p>有志者，事竟成，破釜沉舟，百二秦关终属楚；</p><p>苦心人，天不负，卧薪尝胆，三千越甲可吞吴。</p><blockquote><p>感悟：高中时常常以此自勉。</p></blockquote><h3 id="《蝶恋花》-柳永"><a href="#《蝶恋花》-柳永" class="headerlink" title="《蝶恋花》 柳永"></a>《蝶恋花》 <strong>柳永</strong></h3><p>伫倚危楼风细细，望极春愁，黯黯生天际。草色烟光残照里，无言谁会凭阑意。</p><p>拟把疏狂图一醉，对酒当歌，强乐还无味。衣带渐宽终不悔，为伊消得人憔悴。</p><blockquote><p>感悟：柳永漂泊异乡，苦于见不到意中人的沮丧与忧愁。</p></blockquote>]]></content:encoded>
       
       
-      <category domain="https://HNUrookie1.github.io/categories/%E9%9A%8F%E7%AC%94%E6%9D%82%E8%B0%88/">随笔杂谈</category>
+      <category domain="https://xiaooyi.github.io/categories/%E9%9A%8F%E7%AC%94%E6%9D%82%E8%B0%88/">随笔杂谈</category>
       
       
-      <category domain="https://HNUrookie1.github.io/tags/%E5%8F%A4%E8%AF%97%E8%AF%8D/">古诗词</category>
+      <category domain="https://xiaooyi.github.io/tags/%E5%8F%A4%E8%AF%97%E8%AF%8D/">古诗词</category>
       
       
-      <comments>https://hnurookie1.github.io/2024/09/21/Poem/#disqus_thread</comments>
+      <comments>https://xiaooyi.github.io/2024/09/21/Poem/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>Hello World</title>
-      <link>https://hnurookie1.github.io/2024/08/05/hello-world/</link>
-      <guid>https://hnurookie1.github.io/2024/08/05/hello-world/</guid>
+      <link>https://xiaooyi.github.io/2024/08/05/hello-world/</link>
+      <guid>https://xiaooyi.github.io/2024/08/05/hello-world/</guid>
       <pubDate>Mon, 05 Aug 2024 14:30:45 GMT</pubDate>
       
         
@@ -154,14 +182,14 @@
       
       
       
-      <comments>https://hnurookie1.github.io/2024/08/05/hello-world/#disqus_thread</comments>
+      <comments>https://xiaooyi.github.io/2024/08/05/hello-world/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>杂谈4</title>
-      <link>https://hnurookie1.github.io/2024/07/13/%E6%94%BE%E5%81%87/</link>
-      <guid>https://hnurookie1.github.io/2024/07/13/%E6%94%BE%E5%81%87/</guid>
+      <link>https://xiaooyi.github.io/2024/07/13/%E6%94%BE%E5%81%87/</link>
+      <guid>https://xiaooyi.github.io/2024/07/13/%E6%94%BE%E5%81%87/</guid>
       <pubDate>Sat, 13 Jul 2024 14:07:00 GMT</pubDate>
       
       <description>Here&#39;s something encrypted, password is required to continue reading.</description>
@@ -172,17 +200,17 @@
       
       
       
-      <category domain="https://HNUrookie1.github.io/tags/Life-Record/">Life Record</category>
+      <category domain="https://xiaooyi.github.io/tags/Life-Record/">Life Record</category>
       
       
-      <comments>https://hnurookie1.github.io/2024/07/13/%E6%94%BE%E5%81%87/#disqus_thread</comments>
+      <comments>https://xiaooyi.github.io/2024/07/13/%E6%94%BE%E5%81%87/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>杂谈5</title>
-      <link>https://hnurookie1.github.io/2024/07/07/%E5%A4%8F%E4%BB%A4%E8%90%A5%E9%9D%A2%E8%AF%95/</link>
-      <guid>https://hnurookie1.github.io/2024/07/07/%E5%A4%8F%E4%BB%A4%E8%90%A5%E9%9D%A2%E8%AF%95/</guid>
+      <link>https://xiaooyi.github.io/2024/07/07/%E5%A4%8F%E4%BB%A4%E8%90%A5%E9%9D%A2%E8%AF%95/</link>
+      <guid>https://xiaooyi.github.io/2024/07/07/%E5%A4%8F%E4%BB%A4%E8%90%A5%E9%9D%A2%E8%AF%95/</guid>
       <pubDate>Sun, 07 Jul 2024 02:45:00 GMT</pubDate>
       
       <description>Here&#39;s something encrypted, password is required to continue reading.</description>
@@ -192,20 +220,20 @@
       <content:encoded><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="3c584ae465d71d13f7aa3a8357ad0c4199d9743b42c14ad7d570ce2d1fdbcdf7">54e3726371269f5f4d16eecc3c6bcb42d185cacc6501b297ebb531def94b648a782469698b7eee9c4be4e8b63bc00fb0dd092588a7bc62532298e4ad870aae4b1fa7bde180b9f2fec2c70e58a56d8b0a8361919c35db03bdd4a4c5e3525db718ca00839ae692b722fa90c1ef8748526a3e2ffad3fec764b2854c4660dbf35007c7d7e292a9e403fca3c4b7fbcb69d27493f53844f753f94714bed5cdab07febc71150733369d3a5a3b16562185f93c3359f47ac5c7ef21164b00aafc520a16e42b2d648219f7757e9fb22716cf42b6f6739262c084c98ca974aabc84f30c25d2fdc0659ac5579776ec90c6ac8d8b43ad93c27eb2936f84b4b63779b65cfac5959100e3bb443e94c3e7067720cd5554406ffff5cea597a437adc41239064d0bbd75bab5f498fd4249725405efeb7e8999c42281eef3616c5d7c8d9a5fd097937e371d18b66d4d9dfccc88df8aa9121f67cb2e39423b59c471b961cef54cb6cc7d00c25a60993378765a0c77c8db51fa36e8d6d8d7d9e8ffe66e6d32634ec3812ca3e81cc5a1390bbb17d7e5e6d7341fcc1ead6f3d5fec8bc2970fa1c7039252f3047f69a1724965e9bf7f3425a539a6b9d8528d451eb07c1cd3aba4bb9c2c58012113a9e7ff0476edd7d2c79d3b87a782729507ce5e5a826c9c7d3950aa07c05301bdb4751150496d6c383b356df4b9e0acea240169c200dce0c207198664743a9c59a60f15bf77bb3723f3fbf3fbd1f2842a83026fea9967616cd6631778178274a962a120383443dc3d77c3463ca4a6dadfd28e9714922df3492ee83f825c397d4b3a60a170dcc061db649623852d7650323dd6af38a5542300e86e51d2fca77a8bf101af099bee0eaa63a648c195e363ca1540250d7c9f004bad03fd79576f148faa22b1b86f0759248dd53b5037fe6c4e85514c2838b99e9e4d36f7aca3fbdebeb5fef78584e78501dac8bffd866f55acd9d453fcd49e9954987393243ddfb52a7d4d3e6cf0dd2dc1db995c2bff97c69ea1d7e21fff96371f8a04a06110ba8b7dd1ea643aef02afaebfb06fcc76d4fa2c84563bc0177a3bf76a4e8dfe7b5869adc9c19c48cbd76f169ac3579394a4acb3b7cd6dae140e142e34238b358db809a2b47167b79e637b426874c0899e686faef4fb5a0a72b2401397844b60c3255086ee851328df58e2a4252e7106b31ef034ca1531e42765f703203965dfddad9b4c01292eea5fe569830d989d14e45d945e4bbf3012abce8afed2ca6d2ae32be708d49d3f159ae3cce64ced342e8510ae0e58babd9e121775c0230e51d27ec5876dd9e5f00bf257dafde600353dc92e3af608d7f063a93202db06cd8437849f07d0a2f6f7b680003c627619ee5d2567c69bb458ead14465c79cea0a3648da4de9cd83acc67b891ebe29745167a6cda61abce21ea55d76ec88f35567ae6a62e1ccaacae3c6f9bd3d8541866034ec82727459b0ed1e185266fb95a96a3a25498e80a730e75c5c3bf01109a02897228a94af8c2acd77df00043c32a7580a95aa9384abc162f2e5dd645bf7c4f5ef3da1f5828a331af4d73c153130902d2a39e1197584851234959d47a5af31b04b30bf1a60da81e3c73109769970dc117b2ffe43347f330ce28ef0a159ec7744536b110750ae79a0177943435261cb780ddd332e5ff14e13c058ae53b9812ed6cedf0488c69110439495fcd65a7abf01c9891a111ca034973da720c51cf85b904d723612d648a371cbdd15d9d5a984aaab0897a05e8e4f8a4ead775a5feae42673975888836a4030c5680ba5624013a1c996a7445bdc9a8e7be21fd82873e33293b360a8dce289924685551b9ec952248a30bf547fcc79c0e6b388e14577c1fdefc9666b</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content:encoded>
       
       
-      <category domain="https://HNUrookie1.github.io/categories/%E9%9A%8F%E7%AC%94%E6%9D%82%E8%B0%88/">随笔杂谈</category>
+      <category domain="https://xiaooyi.github.io/categories/%E9%9A%8F%E7%AC%94%E6%9D%82%E8%B0%88/">随笔杂谈</category>
       
       
-      <category domain="https://HNUrookie1.github.io/tags/%E9%9D%A2%E8%AF%95/">面试</category>
+      <category domain="https://xiaooyi.github.io/tags/%E9%9D%A2%E8%AF%95/">面试</category>
       
       
-      <comments>https://hnurookie1.github.io/2024/07/07/%E5%A4%8F%E4%BB%A4%E8%90%A5%E9%9D%A2%E8%AF%95/#disqus_thread</comments>
+      <comments>https://xiaooyi.github.io/2024/07/07/%E5%A4%8F%E4%BB%A4%E8%90%A5%E9%9D%A2%E8%AF%95/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>计网学习笔记</title>
-      <link>https://hnurookie1.github.io/2024/06/28/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0/</link>
-      <guid>https://hnurookie1.github.io/2024/06/28/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0/</guid>
+      <link>https://xiaooyi.github.io/2024/06/28/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0/</link>
+      <guid>https://xiaooyi.github.io/2024/06/28/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0/</guid>
       <pubDate>Fri, 28 Jun 2024 09:05:41 GMT</pubDate>
       
         
@@ -219,36 +247,10 @@
       
       
       
-      <category domain="https://HNUrookie1.github.io/tags/Computer-Network/">Computer Network</category>
+      <category domain="https://xiaooyi.github.io/tags/Computer-Network/">Computer Network</category>
       
       
-      <comments>https://hnurookie1.github.io/2024/06/28/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Git学习笔记</title>
-      <link>https://hnurookie1.github.io/2024/05/22/Git%E5%AD%A6%E4%B9%A0/</link>
-      <guid>https://hnurookie1.github.io/2024/05/22/Git%E5%AD%A6%E4%B9%A0/</guid>
-      <pubDate>Tue, 21 May 2024 16:18:35 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h1 id=&quot;Git分支-分支简介-2024-5-24&quot;&gt;&lt;a href=&quot;#Git分支-分支简介-2024-5-24&quot; class=&quot;headerlink&quot; title=&quot;Git分支-分支简介(2024-5-24)&quot;&gt;&lt;/a&gt;Git分支-分支简介(2024-5-24)&lt;/h1</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h1 id="Git分支-分支简介-2024-5-24"><a href="#Git分支-分支简介-2024-5-24" class="headerlink" title="Git分支-分支简介(2024-5-24)"></a>Git分支-分支简介(2024-5-24)</h1><p>几乎所有的版本控制系统都以某种形式支持分支。使用分支意味着你可以把你的工作从主线上分离开来，以免影响开发主线。在很多版本控制系统中，这是一个略微低效的过程–常常需要完全创建一个源代码目录的副本。对于大项目来说，这样的过程会耗费很多时间。<br>有人把Git的分支模型称为它的“必杀技特性”，也正因为这一特性，使得Git从众多版本控制系统中脱颖而出。为何Git的分支模型如此出众呢？Git处理分支的方式可谓是难以执行的轻量，创建新分支这一操作几乎能在瞬间完成，并且在不同分支之间的切换操作也是一样便捷。与许多其他版本控制系统不同，Git鼓励在工作流程中频繁地使用分支与合并，哪怕一天内进行许多次。理解和精通这一特性，你便会意识到Git是如此的强大而又独特，并且从此真正改变你的开发方式。</p><h2 id="分支简介"><a href="#分支简介" class="headerlink" title="分支简介"></a>分支简介</h2><p>为了真正理解Git处理分支的方式，我们需要回顾以下Git是如何保存数据的。<br>Git保存的不是文件的变化或者差异，而是一系列不同时刻的快照。<br>在进行提交操作时，Git会保存一个提交对象（commit object）。知道了Git保存数据的方式，我们可以很自然的想到–该提交对象会包含一个指向暂存内容快照的指针。但不仅仅是这样，该提交对象还包含了作者的姓名和邮箱、提交时输入的信息以及指向它的父对象的指针。首次提交产生的提交对象还没有父对象，普通提交操作产生的提交对象有一个父对象，而由多个分支合并产生的提交对象有多个父对象。<br>为了更加形象地说明，我们假设现在有一个工作目录，里面包含了三个将要被暂存和提交的文件。暂存操作会为每一个文件计算校验和（使用SHA-1哈希算法），然后会把当前版本的文件快照保存到Git仓库中（Git使用blob对象来保存它们），最终将校验和加入到暂存区域等待提交：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git add README test.rb LICENSE</span><br><span class="line">$ git commit -m &quot;The initial commit of my project&quot;</span><br></pre></td></tr></table></figure><p>当使用<code>git commit</code>进行提交操作时，Git会先计算每一个子目录（本目录中只有项目根目录）的校验和，然后在Git仓库中将这些校验和保存为树对象。</p><h1 id="Git分支-远程分支-2024-5-22"><a href="#Git分支-远程分支-2024-5-22" class="headerlink" title="Git分支-远程分支(2024-5-22)"></a>Git分支-远程分支(2024-5-22)</h1><h2 id="远程分支"><a href="#远程分支" class="headerlink" title="远程分支"></a>远程分支</h2><p>远程引用时对远程仓库的引用（指针），包括分支、标签等等。你可以通过 <code>git ls-remote &lt;remote&gt;</code>来显示地获取远程引用的完整列表，或者通过<code>git remote show &lt;remote&gt;</code>来获取远程分支的更多信息。然而，一个更常见的做法是利用远程跟踪分支。<br>远程跟踪分支是远程分支状态的引用。它们是你无法移动的本地引用。一旦你进行了网络通信，Git就会为你移动它们以精确反应远程仓库的状态。请将它们看做书签，这样可以提醒你该分支在远程仓库中的位置就是你最后一次连接到它们的位置。<del>休息，明天再写</del><br><strong>（2024-5-23）</strong><br>它们以<code>&lt;remote&gt;/&lt;branch&gt;</code>的形式命名。例如，如果你想要看你最后一次与远程仓库<code>origin</code>通信时<code>master</code>分支的状态，你可以查看<code>&lt;origin&gt;/&lt;branch&gt;</code>分支。你与同是合作解决一个问题并且她们推送了一个<code>iss53</code>分支，你可能有自己的本地<code>iss53</code>分支，然而在服务器上的分支会以<code>origin/iss53</code>来表示。<br>这可能有一点难以理解，让我们来看一个例子。假如你的网络里有一个在<code>git.ourcompany.com</code>的Git服务器。如果你从这里克隆，Git的<code>clone</code>命令会为你自动将其命名为<code>ogigin</code>，拉去它的所有数据，创建一个指向它的<code>master</code>分支，并且在本地将其命名为<code>origin/master</code>。Git也会给你一个与origin的<code>master</code>分支在指向同一个地方的本地<code>master</code>分支，这样你就有工作的基础。<br><strong>Note</strong>:<br>“origin” 并无特殊含义<br>远程仓库名字 “origin” 与分支名字 “master” 一样，在 Git 中并没有任何特别的含义一样。 同时 “master” 是当你运行 git init 时默认的起始分支名字，原因仅仅是它的广泛使用， “origin” 是当你运行 git clone 时默认的远程仓库名字。 如果你运行 <code>git clone -o booyah</code>，那么你默认的远程分支名字将会是 <code>booyah/master</code>。<br><img src="/2024/05/22/Git%E5%AD%A6%E4%B9%A0/1.png"><br>如果你在本地的 <code>master</code> 分支做了一些工作，在同一段时间内有其他人推送提交到 <code>git.ourcompany.com</code> 并且更新了它的 <code>master</code> 分支，这就是说你们的提交历史已走向不同的方向。 即便这样，只要你保持不与 <code>origin</code> 服务器连接（并拉取数据），你的 <code>origin/master</code> 指针就不会移动。<br><img src="/2024/05/22/Git%E5%AD%A6%E4%B9%A0/2.png"><br>如果要与给定的远程仓库同步数据，运行 <code>git fetch &lt;remote&gt;</code> 命令（在本例中为 <code>git fetch origin</code>）。 这个命令查找 “origin” 是哪一个服务器（在本例中，它是 <code>git.ourcompany.com</code>）， 从中抓取本地没有的数据，并且更新本地数据库，移动 <code>origin/master</code> 指针到更新之后的位置。<br><img src="/2024/05/22/Git%E5%AD%A6%E4%B9%A0/3.png"><br>为了演示有多个远程仓库与远程分支的情况，我们假定你有另一个内部 Git 服务器，仅服务于你的某个敏捷开发团队。 这个服务器位于 <code>git.team1.ourcompany.com</code>。 你可以运行 <code>git remote add teamone git://git.team1.ourcompany.com</code> 命令添加一个新的远程仓库引用到当前的项目，将这个远程仓库命名为 <code>teamone</code>，将其作为完整 URL 的缩写。<br><img src="/2024/05/22/Git%E5%AD%A6%E4%B9%A0/4.png"><br>现在，可以运行 <code>git fetch teamone</code> 来抓取远程仓库 <code>teamone</code> 有而本地没有的数据。 因为那台服务器上现有的数据是 <code>origin</code> 服务器上的一个子集， 所以 Git 并不会抓取数据而是会设置远程跟踪分支 <code>teamone/master</code> 指向 <code>teamone</code> 的 <code>master</code> 分支。<br><img src="/2024/05/22/Git%E5%AD%A6%E4%B9%A0/5.png"></p><h2 id="推送"><a href="#推送" class="headerlink" title="推送"></a>推送</h2><p>当你想要公开分享一个分支时，需要将其推送到有写入权限的远程仓库上。 本地的分支并不会自动与远程仓库同步——你必须显式地推送想要分享的分支。 这样，你就可以把不愿意分享的内容放到私人分支上，而将需要和别人协作的内容推送到公开分支。</p><p>如果希望和别人一起在名为 serverfix 的分支上工作，你可以像推送第一个分支那样推送它。 运行 <code>git push &lt;remote&gt; &lt;branch&gt;</code>:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin serverfix</span><br><span class="line">Counting objects: 24, done.</span><br><span class="line">Delta compression using up to 8 threads.</span><br><span class="line">Compressing objects: 100% (15/15), done.</span><br><span class="line">Writing objects: 100% (24/24), 1.91 KiB | 0 bytes/s, done.</span><br><span class="line">Total 24 (delta 2), reused 0 (delta 0)</span><br><span class="line">To https://github.com/schacon/simplegit</span><br><span class="line"> * [new branch]      serverfix -&gt; serverfix</span><br></pre></td></tr></table></figure><p>这里有些工作被简化了。 Git 自动将 <code>serverfix</code> 分支名字展开为 <code>refs/heads/serverfix:refs/heads/serverfix</code>， 那意味着，“推送本地的 <code>serverfix</code> 分支来更新远程仓库上的 <code>serverfix</code> 分支。” 你也可以运行 <code>git push origin serverfix:serverfix</code>， 它会做同样的事——也就是说“推送本地的 <code>serverfix</code> 分支，将其作为远程仓库的 <code>serverfix</code> 分支” 可以通过这种格式来推送本地分支到一个命名不相同的远程分支。 如果并不想让远程仓库上的分支叫做 <code>serverfix</code>，可以运行 <code>git push origin serverfix:awesomebranch</code> 来将本地的 <code>serverfix</code> 分支推送到远程仓库上的 <code>awesomebranch</code> 分支。<br><strong>Note</strong><br><em>如何避免每次输入密码?</em><br>如果你正在使用 HTTPS URL 来推送，Git 服务器会询问用户名与密码。 默认情况下它会在终端中提示服务器是否允许你进行推送。</p><p>如果不想在每一次推送时都输入用户名与密码，你可以设置一个 “credential cache”。 最简单的方式就是将其保存在内存中几分钟，可以简单地运行 <code>git config --global credential.helper cache</code> 来设置它。</p><p>下一次其他协作者从服务器上抓取数据时，他们会在本地生成一个远程分支 <code>origin/serverfix</code>，指向服务器的 <code>serverfix</code> 分支的引用：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch origin</span><br><span class="line">remote: Counting objects: 7, done.</span><br><span class="line">remote: Compressing objects: 100% (2/2), done.</span><br><span class="line">remote: Total 3 (delta 0), reused 3 (delta 0)</span><br><span class="line">Unpacking objects: 100% (3/3), done.</span><br><span class="line">From https://github.com/schacon/simplegit</span><br><span class="line"> * [new branch]      serverfix    -&gt; origin/serverfix</span><br></pre></td></tr></table></figure><p>要特别注意的一点是当抓取到新的远程跟踪分支时，本地不会自动生成一份可编辑的副本（拷贝）。 换一句话说，这种情况下，不会有一个新的 <code>serverfix</code> 分支——只有一个不可以修改的 <code>origin/serverfix</code> 指针。</p><p>可以运行 <code>git merge origin/serverfix</code> 将这些工作合并到当前所在的分支。 如果想要在自己的 <code>serverfix</code> 分支上工作，可以将其建立在远程跟踪分支之上：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b serverfix origin/serverfix</span><br><span class="line">Branch serverfix set up to track remote branch serverfix from origin.</span><br><span class="line">Switched to a new branch &#x27;serverfix&#x27;</span><br></pre></td></tr></table></figure><p>这会给你一个用于工作的本地分支，并且起点位于 <code>origin/serverfix</code>。</p><h2 id="跟踪分支"><a href="#跟踪分支" class="headerlink" title="跟踪分支"></a>跟踪分支</h2><p>从一个远程跟踪分支检出一个本地分支会自动创建所谓的“跟踪分支”（它跟踪的分支叫做“上游分支”）。 跟踪分支是与远程分支有直接关系的本地分支。 如果在一个跟踪分支上输入 <code>git pull</code>，Git 能自动地识别去哪个服务器上抓取、合并到哪个分支。</p><p>当克隆一个仓库时，它通常会自动地创建一个跟踪 <code>origin/master</code> 的 <code>master</code> 分支。 然而，如果你愿意的话可以设置其他的跟踪分支，或是一个在其他远程仓库上的跟踪分支，又或者不跟踪 <code>master</code> 分支。 最简单的实例就是像之前看到的那样，运行 <code>git checkout -b &lt;branch&gt; &lt;remote&gt;/&lt;branch&gt;</code>。 这是一个十分常用的操作所以 Git 提供了 <code>--track</code> 快捷方式：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout --track origin/serverfix</span><br><span class="line">Branch serverfix set up to track remote branch serverfix from origin.</span><br><span class="line">Switched to a new branch &#x27;serverfix&#x27;</span><br></pre></td></tr></table></figure><p>由于这个操作太常用了，该捷径本身还有一个捷径。 如果你尝试检出的分支 (a) 不存在且 (b) 刚好只有一个名字与之匹配的远程分支，那么 Git 就会为你创建一个跟踪分支：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout serverfix</span><br><span class="line">Branch serverfix set up to track remote branch serverfix from origin.</span><br><span class="line">Switched to a new branch &#x27;serverfix&#x27;</span><br></pre></td></tr></table></figure><p>如果想要将本地分支与远程分支设置为不同的名字，你可以轻松地使用上一个命令增加一个不同名字的本地分支：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b sf origin/serverfix</span><br><span class="line">Branch sf set up to track remote branch serverfix from origin.</span><br><span class="line">Switched to a new branch &#x27;sf&#x27;</span><br></pre></td></tr></table></figure><p>现在，本地分支  <code>sf</code> 会自动从 <code>origin/serverfix</code> 拉取。</p><p>设置已有的本地分支跟踪一个刚刚拉取下来的远程分支，或者想要修改正在跟踪的上游分支， 你可以在任意时间使用 <code>-u</code> 或 <code>--set-upstream-to</code> 选项运行 <code>git branch</code> 来显式地设置。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -u origin/serverfix</span><br><span class="line">Branch serverfix set up to track remote branch serverfix from origin.</span><br></pre></td></tr></table></figure><p><strong>Note</strong>:<br>具体来说，<code>git branch -u</code>（或 <code>--set-upstream-to</code>）命令用于将本地分支配置为跟踪一个特定的远程分支。这样，你在进行操作时（例如拉取或推送），Git 知道应该与哪个远程分支进行交互。  </p><p>举个例子：命令 $ <code>git branch -u origin/serverfix</code> 的含义如下：<br>该命令将本地 serverfix 分支设置为跟踪远程仓库 origin 上的 serverfix 分支。当你在 <code>serverfix</code> 分支上运行 <code>git pull</code> 或 <code>git push</code> 时，不需要再指定远程分支，Git 会默认与 <code>origin/serverfix</code> 进行交互。</p><p>如果想要查看设置的所有跟踪分支，可以使用 <code>git branch</code> 的 <code>-vv</code> 选项。 这会将所有的本地分支列出来并且包含更多的信息，如每一个分支正在跟踪哪个远程分支与本地分支是否是领先、落后或是都有。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -vv</span><br><span class="line">  iss53     7e424c3 [origin/iss53: ahead 2] forgot the brackets</span><br><span class="line">  master    1ae2a45 [origin/master] deploying index fix</span><br><span class="line">* serverfix f8674d9 [teamone/server-fix-good: ahead 3, behind 1] this should do it</span><br><span class="line">  testing   5ea463a trying something new</span><br></pre></td></tr></table></figure><p>这里可以看到 <code>iss53</code> 分支正在跟踪 <code>origin/iss53</code> 并且 “ahead” 是 2，意味着本地有两个提交还没有推送到服务器上。 也能看到 <code>master</code> 分支正在跟踪 <code>origin/master</code> 分支并且是最新的。 接下来可以看到 <code>serverfix</code> 分支正在跟踪 <code>teamone</code> 服务器上的<code> server-fix-good</code> 分支并且领先 3 落后 1， 意味着服务器上有一次提交还没有合并入同时本地有三次提交还没有推送。 最后看到 <code>testing</code> 分支并没有跟踪任何远程分支。</p><p>需要重点注意的一点是这些数字的值来自于你从每个服务器上最后一次抓取的数据。 这个命令并没有连接服务器，它只会告诉你关于本地缓存的服务器数据。 如果想要统计最新的领先与落后数字，需要在运行此命令前抓取所有的远程仓库。 可以像这样做：<br><code>$ git fetch --all; git branch -vv</code></p><h2 id="拉取"><a href="#拉取" class="headerlink" title="拉取"></a>拉取</h2><p>当 <code>git fetch</code> 命令从服务器上抓取本地没有的数据时，它并不会修改工作目录中的内容。 它只会获取数据然后让你自己合并。 然而，有一个命令叫作 <code>git pull</code> 在大多数情况下它的含义是一个 <code>git fetch</code> 紧接着一个 <code>git merge</code> 命令。 <strong>如果有一个像之前章节中演示的设置好的跟踪分支，不管它是显式地设置还是通过 <code>clone</code> 或 <code>checkout</code> 命令为你创建的，<code>git pull</code> 都会查找当前分支所跟踪的服务器与分支， 从服务器上抓取数据然后尝试合并入那个远程分支。</strong></p><p>由于 <code>git pull</code> 的魔法经常令人困惑所以通常单独显式地使用 <code>fetch</code> 与 <code>merge</code> 命令会更好一些。</p><h2 id="删除远程分支"><a href="#删除远程分支" class="headerlink" title="删除远程分支"></a>删除远程分支</h2><p>假设你已经通过远程分支做完所有的工作了——也就是说你和你的协作者已经完成了一个特性， 并且将其合并到了远程仓库的 <code>master</code> 分支（或任何其他稳定代码分支）。 可以运行带有 <code>--delete</code> 选项的 <code>git push</code> 命令来删除一个远程分支。 如果想要从服务器上删除 <code>serverfix</code> 分支，运行下面的命令：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin --delete serverfix</span><br><span class="line">To https://github.com/schacon/simplegit</span><br><span class="line"> - [deleted]         serverfix</span><br></pre></td></tr></table></figure><p>基本上这个命令做的只是从服务器上移除这个指针。 Git 服务器通常会保留数据一段时间直到垃圾回收运行，所以如果不小心删除掉了，通常是很容易恢复的。(完)</p>]]></content:encoded>
-      
-      
-      <category domain="https://HNUrookie1.github.io/categories/Necessary-Tools/">Necessary Tools</category>
-      
-      
-      <category domain="https://HNUrookie1.github.io/tags/Git/">Git</category>
-      
-      
-      <comments>https://hnurookie1.github.io/2024/05/22/Git%E5%AD%A6%E4%B9%A0/#disqus_thread</comments>
+      <comments>https://xiaooyi.github.io/2024/06/28/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0/#disqus_thread</comments>
       
     </item>
     
