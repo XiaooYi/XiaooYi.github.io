@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Redis实战篇</title>
+      <link href="//2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/"/>
+      <url>//2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/</url>
+      
+        <content type="html"><![CDATA[<h1 id="基于Redis实现验证码登录"><a href="#基于Redis实现验证码登录" class="headerlink" title="基于Redis实现验证码登录"></a>基于Redis实现验证码登录</h1><h2 id="基于session实现登录"><a href="#基于session实现登录" class="headerlink" title="基于session实现登录"></a>基于session实现登录</h2><p>过去我们使用基于session的验证码登录。缺点是session在集群环境下不能使用，因为多台tomcat服务器并不能共享session数据。由此产生了基于redis的登录流程。为了读者理解，先简单介绍一下基于session的登录。</p><h3 id="登录的流程"><a href="#登录的流程" class="headerlink" title="登录的流程"></a>登录的流程</h3><ul><li>发送验证码</li></ul><p>用户输入手机号发起请求，服务端校验手机号格式是否正确，然后生成验证码保存到<strong>服务端自己</strong>的session中，同时发送给用户。</p><ul><li>短信验证码登录、注册</li></ul><p>用户输入手机号和验证码，服务端从session中取出验证码进行比对，通过后从数据库中查找用户信息。如果用户不存在，直接进行注册。然后将用户信息写入自己的session，返回成功信息给用户。</p><ul><li>校验登录状态</li></ul><p>用户每次请求的时候，都会携带cookie，服务端从cookie中取出JsessionID，根据JessionID<strong>查找自己服务器</strong>上的session。如果没有session信息，则进行拦截；如果有session信息，将用户信息写入ThreadLocal中，然后放行。</p><h3 id="session共享问题"><a href="#session共享问题" class="headerlink" title="session共享问题"></a>session共享问题</h3><p>通过以上分析，我们发现，服务器每次在保存session的时候，只会保存到自己服务器的环境中，并不会保存到其他tomcat服务器上。那么，如果在tomcat服务器集群环境下，用户第一次请求1号tomcat服务器，1号服务器将session保存到自己服务器上。当用户第二次请求的时候，他的请求被nginx分配到了2号tomcat服务器上，2号服务器上并没有用户的session信息，则会进行拦截。问题就出现了。</p><p>如何解决呢？早期的方案是，一台tomcat服务器在保存session信息时，同时同步给其他所有tomcat服务器。</p><p>但是这种方案有两大问题：</p><ol><li>每台tocat服务器都有完整session信息，服务器压力过大</li><li>session拷贝数据时，可能会出现延时</li></ol><p>而又因为redis本身就是共享的，又是基于内存的，同时也是key、value结构，所以可以采用redis替代session的解决方案。</p><p><img src="/2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/1.png"></p><h3 id="Redis替代Session"><a href="#Redis替代Session" class="headerlink" title="Redis替代Session"></a>Redis替代Session</h3><p>我们要考虑redis的key的结构和key具体的设计细节。</p><ol><li>key的结构</li></ol><p>采用string数据类型。string：key为string，value使用json字符串保存，比较直观。</p><p>key     value</p><p>heima:user:1{name:”jack”,age:21}</p><p>采用hash数据类型。可以将对象中的每个字段单独存储，可以针对单个字段做CRUD,并且占用内存更少。</p><p>​key  value</p><p>​    filed  value</p><p>heima:user:1name  jack</p><p>​age      21</p><ol start="2"><li>key的具体细节</li></ol><ul><li>唯一性</li><li>方便性</li></ul><p>一般采用随机生成的token作为key就够了。</p><ol start="3"><li>访问流程</li></ol><p>当用户提交手机号和验证码后，后台校验手机号和验证码，通过后，根据手机号查询用户信息，存在的话将用户信息保存到redis中，并生成token作为redis的key，并且将token返回给用户。当用户携带token访问后台的时候，后台取出用户携带的token，根据token访问对应的redis数据，判断用户信息是否存在，如果存在则写入ThreadLocal，然后放行。</p><p><img src="/2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/2.png"></p><ol start="4"><li>拦截器的配置与优化</li></ol><p>在配置拦截器的时候，要手动刷新token的过期时间。但是这样还不够，因为如果用户一直访问拦截器拦截之外的路径，例如主页面的店铺信息，就不会进行token的刷新，token到期后用户就会被剔除。</p><p> 解决办法：在加一层拦截器，拦截所有的路径，在这个拦截器中获取用户信息并刷新token过期时间。在第二个拦截前中，只判断ThreadLocal中是否包含用户信息，没有则拦截，有的话则放行。</p><p><img src="/2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/3.png"></p><h3 id="温馨小贴士"><a href="#温馨小贴士" class="headerlink" title="温馨小贴士"></a>温馨小贴士</h3><p><strong>tomcat的运行原理</strong></p><p>tomcat启动之后，就会有一个监听线程时刻监听8080端口。当用户向tomcat运行的端口发起请求，监听线程就会和用户端创建socket连接。socket都是成对出现的，用户通过socket向tomcat发送数据，tomcat也通过socket向用户返回数据。当tomcat端的socket接收到数据后，监听线程会从tomcat的工作线程池中取出一个线程执行用户的请求。该线程基于用户的请求，访问controller、service、dao层，并且访问对应的DB,用户执行完请求之后，再统一返回，再找到tomcat的socket连接，将数据返回给用户端的socket。</p><p><img src="/2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/4.png"></p><p><strong>关于threadlocal</strong></p><p>在ThreadLocal的源码中，无论是get方法，还是set方法，ThreadLocal都会先获取当前用户的线程，然后从当前线程中取出ThreadLocalMap类型的map成员变量。只要线程不一样，取出的map变量就不一样，通过这种方式就实现了线程的隔离。</p><p>因此，基于以上我们可知，用户发出的每次请求都在tomcat取出的一个线程中完成，而且用户的每次请求都是独立的，每次请求都会取出一个线程，请求完之后线程进行回收。而ThreadLocal恰好也是每次都从当前线程中取出变量，将数据和线程做了捆绑。因此，当用户访问我们的工程时，就可以通过ThreadLocal来做到线程隔离，通过ThreadLocal做到每个线程操作自己的数据，每个线程都有自己的变量副本。</p><p><img src="/2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/6.png"></p><p><img src="/2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/5.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java8新特性-编译时保留方法参数名</title>
       <link href="//2025/07/31/Java8%E6%96%B0%E7%89%B9%E6%80%A7-%E7%BC%96%E8%AF%91%E6%97%B6%E4%BF%9D%E7%95%99%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E5%90%8D/"/>
       <url>//2025/07/31/Java8%E6%96%B0%E7%89%B9%E6%80%A7-%E7%BC%96%E8%AF%91%E6%97%B6%E4%BF%9D%E7%95%99%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E5%90%8D/</url>

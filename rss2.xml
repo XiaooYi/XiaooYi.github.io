@@ -9,8 +9,34 @@
     <atom:link href="https://xiaooyi.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Thu, 31 Jul 2025 05:44:15 GMT</pubDate>
+    <pubDate>Sat, 02 Aug 2025 06:51:07 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Redis实战篇</title>
+      <link>https://xiaooyi.github.io/2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/</link>
+      <guid>https://xiaooyi.github.io/2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/</guid>
+      <pubDate>Fri, 01 Aug 2025 13:44:03 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h1 id=&quot;基于Redis实现验证码登录&quot;&gt;&lt;a href=&quot;#基于Redis实现验证码登录&quot; class=&quot;headerlink&quot; title=&quot;基于Redis实现验证码登录&quot;&gt;&lt;/a&gt;基于Redis实现验证码登录&lt;/h1&gt;&lt;h2 id=&quot;基于session实现登录&quot;&gt;&lt;a</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="基于Redis实现验证码登录"><a href="#基于Redis实现验证码登录" class="headerlink" title="基于Redis实现验证码登录"></a>基于Redis实现验证码登录</h1><h2 id="基于session实现登录"><a href="#基于session实现登录" class="headerlink" title="基于session实现登录"></a>基于session实现登录</h2><p>过去我们使用基于session的验证码登录。缺点是session在集群环境下不能使用，因为多台tomcat服务器并不能共享session数据。由此产生了基于redis的登录流程。为了读者理解，先简单介绍一下基于session的登录。</p><h3 id="登录的流程"><a href="#登录的流程" class="headerlink" title="登录的流程"></a>登录的流程</h3><ul><li>发送验证码</li></ul><p>用户输入手机号发起请求，服务端校验手机号格式是否正确，然后生成验证码保存到<strong>服务端自己</strong>的session中，同时发送给用户。</p><ul><li>短信验证码登录、注册</li></ul><p>用户输入手机号和验证码，服务端从session中取出验证码进行比对，通过后从数据库中查找用户信息。如果用户不存在，直接进行注册。然后将用户信息写入自己的session，返回成功信息给用户。</p><ul><li>校验登录状态</li></ul><p>用户每次请求的时候，都会携带cookie，服务端从cookie中取出JsessionID，根据JessionID<strong>查找自己服务器</strong>上的session。如果没有session信息，则进行拦截；如果有session信息，将用户信息写入ThreadLocal中，然后放行。</p><h3 id="session共享问题"><a href="#session共享问题" class="headerlink" title="session共享问题"></a>session共享问题</h3><p>通过以上分析，我们发现，服务器每次在保存session的时候，只会保存到自己服务器的环境中，并不会保存到其他tomcat服务器上。那么，如果在tomcat服务器集群环境下，用户第一次请求1号tomcat服务器，1号服务器将session保存到自己服务器上。当用户第二次请求的时候，他的请求被nginx分配到了2号tomcat服务器上，2号服务器上并没有用户的session信息，则会进行拦截。问题就出现了。</p><p>如何解决呢？早期的方案是，一台tomcat服务器在保存session信息时，同时同步给其他所有tomcat服务器。</p><p>但是这种方案有两大问题：</p><ol><li>每台tocat服务器都有完整session信息，服务器压力过大</li><li>session拷贝数据时，可能会出现延时</li></ol><p>而又因为redis本身就是共享的，又是基于内存的，同时也是key、value结构，所以可以采用redis替代session的解决方案。</p><p><img src="/2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/1.png"></p><h3 id="Redis替代Session"><a href="#Redis替代Session" class="headerlink" title="Redis替代Session"></a>Redis替代Session</h3><p>我们要考虑redis的key的结构和key具体的设计细节。</p><ol><li>key的结构</li></ol><p>采用string数据类型。string：key为string，value使用json字符串保存，比较直观。</p><p>key     value</p><p>heima:user:1{name:”jack”,age:21}</p><p>采用hash数据类型。可以将对象中的每个字段单独存储，可以针对单个字段做CRUD,并且占用内存更少。</p><p>​key  value</p><p>​    filed  value</p><p>heima:user:1name  jack</p><p>​age      21</p><ol start="2"><li>key的具体细节</li></ol><ul><li>唯一性</li><li>方便性</li></ul><p>一般采用随机生成的token作为key就够了。</p><ol start="3"><li>访问流程</li></ol><p>当用户提交手机号和验证码后，后台校验手机号和验证码，通过后，根据手机号查询用户信息，存在的话将用户信息保存到redis中，并生成token作为redis的key，并且将token返回给用户。当用户携带token访问后台的时候，后台取出用户携带的token，根据token访问对应的redis数据，判断用户信息是否存在，如果存在则写入ThreadLocal，然后放行。</p><p><img src="/2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/2.png"></p><ol start="4"><li>拦截器的配置与优化</li></ol><p>在配置拦截器的时候，要手动刷新token的过期时间。但是这样还不够，因为如果用户一直访问拦截器拦截之外的路径，例如主页面的店铺信息，就不会进行token的刷新，token到期后用户就会被剔除。</p><p> 解决办法：在加一层拦截器，拦截所有的路径，在这个拦截器中获取用户信息并刷新token过期时间。在第二个拦截前中，只判断ThreadLocal中是否包含用户信息，没有则拦截，有的话则放行。</p><p><img src="/2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/3.png"></p><h3 id="温馨小贴士"><a href="#温馨小贴士" class="headerlink" title="温馨小贴士"></a>温馨小贴士</h3><p><strong>tomcat的运行原理</strong></p><p>tomcat启动之后，就会有一个监听线程时刻监听8080端口。当用户向tomcat运行的端口发起请求，监听线程就会和用户端创建socket连接。socket都是成对出现的，用户通过socket向tomcat发送数据，tomcat也通过socket向用户返回数据。当tomcat端的socket接收到数据后，监听线程会从tomcat的工作线程池中取出一个线程执行用户的请求。该线程基于用户的请求，访问controller、service、dao层，并且访问对应的DB,用户执行完请求之后，再统一返回，再找到tomcat的socket连接，将数据返回给用户端的socket。</p><p><img src="/2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/4.png"></p><p><strong>关于threadlocal</strong></p><p>在ThreadLocal的源码中，无论是get方法，还是set方法，ThreadLocal都会先获取当前用户的线程，然后从当前线程中取出ThreadLocalMap类型的map成员变量。只要线程不一样，取出的map变量就不一样，通过这种方式就实现了线程的隔离。</p><p>因此，基于以上我们可知，用户发出的每次请求都在tomcat取出的一个线程中完成，而且用户的每次请求都是独立的，每次请求都会取出一个线程，请求完之后线程进行回收。而ThreadLocal恰好也是每次都从当前线程中取出变量，将数据和线程做了捆绑。因此，当用户访问我们的工程时，就可以通过ThreadLocal来做到线程隔离，通过ThreadLocal做到每个线程操作自己的数据，每个线程都有自己的变量副本。</p><p><img src="/2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/6.png"></p><p><img src="/2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/5.png"></p>]]></content:encoded>
+      
+      
+      <category domain="https://xiaooyi.github.io/categories/Java/">Java</category>
+      
+      
+      <category domain="https://xiaooyi.github.io/tags/Redis/">Redis</category>
+      
+      
+      <comments>https://xiaooyi.github.io/2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Java8新特性-编译时保留方法参数名</title>
@@ -241,29 +267,6 @@
       
       
       <comments>https://xiaooyi.github.io/2024/07/13/%E6%94%BE%E5%81%87/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>杂谈5</title>
-      <link>https://xiaooyi.github.io/2024/07/07/%E5%A4%8F%E4%BB%A4%E8%90%A5%E9%9D%A2%E8%AF%95/</link>
-      <guid>https://xiaooyi.github.io/2024/07/07/%E5%A4%8F%E4%BB%A4%E8%90%A5%E9%9D%A2%E8%AF%95/</guid>
-      <pubDate>Sun, 07 Jul 2024 02:45:00 GMT</pubDate>
-      
-      <description>Here&#39;s something encrypted, password is required to continue reading.</description>
-      
-      
-      
-      <content:encoded><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="3c584ae465d71d13f7aa3a8357ad0c4199d9743b42c14ad7d570ce2d1fdbcdf7">54e3726371269f5f4d16eecc3c6bcb42d185cacc6501b297ebb531def94b648a782469698b7eee9c4be4e8b63bc00fb0dd092588a7bc62532298e4ad870aae4b1fa7bde180b9f2fec2c70e58a56d8b0a8361919c35db03bdd4a4c5e3525db718ca00839ae692b722fa90c1ef8748526a3e2ffad3fec764b2854c4660dbf35007c7d7e292a9e403fca3c4b7fbcb69d27493f53844f753f94714bed5cdab07febc71150733369d3a5a3b16562185f93c3359f47ac5c7ef21164b00aafc520a16e42b2d648219f7757e9fb22716cf42b6f6739262c084c98ca974aabc84f30c25d2fdc0659ac5579776ec90c6ac8d8b43ad93c27eb2936f84b4b63779b65cfac5959100e3bb443e94c3e7067720cd5554406ffff5cea597a437adc41239064d0bbd75bab5f498fd4249725405efeb7e8999c42281eef3616c5d7c8d9a5fd097937e371d18b66d4d9dfccc88df8aa9121f67cb2e39423b59c471b961cef54cb6cc7d00c25a60993378765a0c77c8db51fa36e8d6d8d7d9e8ffe66e6d32634ec3812ca3e81cc5a1390bbb17d7e5e6d7341fcc1ead6f3d5fec8bc2970fa1c7039252f3047f69a1724965e9bf7f3425a539a6b9d8528d451eb07c1cd3aba4bb9c2c58012113a9e7ff0476edd7d2c79d3b87a782729507ce5e5a826c9c7d3950aa07c05301bdb4751150496d6c383b356df4b9e0acea240169c200dce0c207198664743a9c59a60f15bf77bb3723f3fbf3fbd1f2842a83026fea9967616cd6631778178274a962a120383443dc3d77c3463ca4a6dadfd28e9714922df3492ee83f825c397d4b3a60a170dcc061db649623852d7650323dd6af38a5542300e86e51d2fca77a8bf101af099bee0eaa63a648c195e363ca1540250d7c9f004bad03fd79576f148faa22b1b86f0759248dd53b5037fe6c4e85514c2838b99e9e4d36f7aca3fbdebeb5fef78584e78501dac8bffd866f55acd9d453fcd49e9954987393243ddfb52a7d4d3e6cf0dd2dc1db995c2bff97c69ea1d7e21fff96371f8a04a06110ba8b7dd1ea643aef02afaebfb06fcc76d4fa2c84563bc0177a3bf76a4e8dfe7b5869adc9c19c48cbd76f169ac3579394a4acb3b7cd6dae140e142e34238b358db809a2b47167b79e637b426874c0899e686faef4fb5a0a72b2401397844b60c3255086ee851328df58e2a4252e7106b31ef034ca1531e42765f703203965dfddad9b4c01292eea5fe569830d989d14e45d945e4bbf3012abce8afed2ca6d2ae32be708d49d3f159ae3cce64ced342e8510ae0e58babd9e121775c0230e51d27ec5876dd9e5f00bf257dafde600353dc92e3af608d7f063a93202db06cd8437849f07d0a2f6f7b680003c627619ee5d2567c69bb458ead14465c79cea0a3648da4de9cd83acc67b891ebe29745167a6cda61abce21ea55d76ec88f35567ae6a62e1ccaacae3c6f9bd3d8541866034ec82727459b0ed1e185266fb95a96a3a25498e80a730e75c5c3bf01109a02897228a94af8c2acd77df00043c32a7580a95aa9384abc162f2e5dd645bf7c4f5ef3da1f5828a331af4d73c153130902d2a39e1197584851234959d47a5af31b04b30bf1a60da81e3c73109769970dc117b2ffe43347f330ce28ef0a159ec7744536b110750ae79a0177943435261cb780ddd332e5ff14e13c058ae53b9812ed6cedf0488c69110439495fcd65a7abf01c9891a111ca034973da720c51cf85b904d723612d648a371cbdd15d9d5a984aaab0897a05e8e4f8a4ead775a5feae42673975888836a4030c5680ba5624013a1c996a7445bdc9a8e7be21fd82873e33293b360a8dce289924685551b9ec952248a30bf547fcc79c0e6b388e14577c1fdefc9666b</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content:encoded>
-      
-      
-      <category domain="https://xiaooyi.github.io/categories/%E9%9A%8F%E7%AC%94%E6%9D%82%E8%B0%88/">随笔杂谈</category>
-      
-      
-      <category domain="https://xiaooyi.github.io/tags/%E9%9D%A2%E8%AF%95/">面试</category>
-      
-      
-      <comments>https://xiaooyi.github.io/2024/07/07/%E5%A4%8F%E4%BB%A4%E8%90%A5%E9%9D%A2%E8%AF%95/#disqus_thread</comments>
       
     </item>
     

@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xiaooyi.github.io/2025/08/01/Redis%E5%AE%9E%E6%88%98%E7%AF%87/</loc>
+    
+    <lastmod>2025-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://xiaooyi.github.io/2025/07/31/Java8%E6%96%B0%E7%89%B9%E6%80%A7-%E7%BC%96%E8%AF%91%E6%97%B6%E4%BF%9D%E7%95%99%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E5%90%8D/</loc>
     
     <lastmod>2025-07-31</lastmod>
@@ -319,7 +328,7 @@
 
   <url>
     <loc>https://xiaooyi.github.io/</loc>
-    <lastmod>2025-07-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -327,84 +336,91 @@
   
   <url>
     <loc>https://xiaooyi.github.io/tags/%E8%AE%A1%E7%BD%91/</loc>
-    <lastmod>2025-07-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xiaooyi.github.io/tags/Git/</loc>
-    <lastmod>2025-07-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xiaooyi.github.io/tags/Java/</loc>
-    <lastmod>2025-07-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xiaooyi.github.io/tags/%E5%8F%A4%E8%AF%97%E8%AF%8D/</loc>
-    <lastmod>2025-07-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiaooyi.github.io/tags/Redis/</loc>
+    <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xiaooyi.github.io/tags/Office/</loc>
-    <lastmod>2025-07-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xiaooyi.github.io/tags/Make/</loc>
-    <lastmod>2025-07-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xiaooyi.github.io/tags/MySQL/</loc>
-    <lastmod>2025-07-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xiaooyi.github.io/tags/Hello-World/</loc>
-    <lastmod>2025-07-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiaooyi.github.io/tags/MySQL/</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiaooyi.github.io/tags/Make/</loc>
+    <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xiaooyi.github.io/tags/algorithm/</loc>
-    <lastmod>2025-07-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xiaooyi.github.io/tags/Vue/</loc>
-    <lastmod>2025-07-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xiaooyi.github.io/tags/%E9%9D%A2%E8%AF%95/</loc>
-    <lastmod>2025-07-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xiaooyi.github.io/tags/%E6%B4%BB%E7%9D%80%E7%9A%84%E6%84%8F%E4%B9%89/</loc>
-    <lastmod>2025-07-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -413,42 +429,49 @@
   
   <url>
     <loc>https://xiaooyi.github.io/categories/%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2025-07-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xiaooyi.github.io/categories/%E9%9A%8F%E7%AC%94%E6%9D%82%E8%B0%88/</loc>
-    <lastmod>2025-07-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiaooyi.github.io/categories/Java/</loc>
+    <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xiaooyi.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2025-07-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xiaooyi.github.io/categories/%E5%85%AD%E7%BA%A7%EF%BC%9F%E5%85%AD%E7%BA%A7%EF%BC%81%EF%BC%81%EF%BC%81/</loc>
-    <lastmod>2025-07-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xiaooyi.github.io/categories/%E5%89%8D%E7%AB%AF/</loc>
-    <lastmod>2025-07-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xiaooyi.github.io/categories/History/</loc>
-    <lastmod>2025-07-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
