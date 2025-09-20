@@ -1,3 +1,4 @@
+https://xiaooyi.github.io/2025/09/03/Java%E6%95%B0%E7%BB%84%E5%88%9D%E5%A7%8B%E5%8C%96%E5%9D%91%E7%82%B9/
 https://xiaooyi.github.io/about/
 https://xiaooyi.github.io/about/index%20copy
 https://xiaooyi.github.io/2025/09/16/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/
@@ -6,7 +7,6 @@ https://xiaooyi.github.io/Weekly/
 https://xiaooyi.github.io/2025/09/08/37%E8%A7%A3%E6%95%B0%E7%8B%AC/
 https://xiaooyi.github.io/LeetCode/
 https://xiaooyi.github.io/2025/07/31/Java8%E6%96%B0%E7%89%B9%E6%80%A7-%E7%BC%96%E8%AF%91%E6%97%B6%E4%BF%9D%E7%95%99%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E5%90%8D/
-https://xiaooyi.github.io/2025/09/03/Java%E6%95%B0%E7%BB%84%E5%88%9D%E5%A7%8B%E5%8C%96%E5%9D%91%E7%82%B9/
 https://xiaooyi.github.io/2025/09/08/3676%E7%A2%97%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE/
 https://xiaooyi.github.io/2025/09/08/3495%E4%BD%BF%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E5%8F%98%E4%B8%BA%E9%9B%B6%E7%9A%84%E6%9C%80%E5%B0%8F%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0/
 https://xiaooyi.github.io/2025/09/08/3459%E6%9C%80%E9%95%BFV%E5%9E%8B%E5%AF%B9%E8%A7%92%E7%BA%BF%E7%9A%84%E9%95%BF%E5%BA%A6/
@@ -54,15 +54,12 @@ https://xiaooyi.github.io/
 https://xiaooyi.github.io/google2bddc3204a23b47c
 https://xiaooyi.github.io/resources/
 https://xiaooyi.github.io/
-https://xiaooyi.github.io/tags/Git/
 https://xiaooyi.github.io/tags/%E8%AE%A1%E7%BD%91/
 https://xiaooyi.github.io/tags/Java/
 https://xiaooyi.github.io/tags/Java8%E7%89%B9%E6%80%A7/
+https://xiaooyi.github.io/tags/Git/
 https://xiaooyi.github.io/tags/%E5%8F%A4%E8%AF%97%E8%AF%8D/
-https://xiaooyi.github.io/tags/Hello-World/
-https://xiaooyi.github.io/tags/MySQL/
-https://xiaooyi.github.io/tags/Make/
-https://xiaooyi.github.io/tags/algorithm/
+https://xiaooyi.github.io/tags/Office/
 https://xiaooyi.github.io/tags/Redis/
 https://xiaooyi.github.io/tags/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/
 https://xiaooyi.github.io/tags/%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9/
@@ -70,8 +67,11 @@ https://xiaooyi.github.io/tags/%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF/
 https://xiaooyi.github.io/tags/%E4%B9%90%E8%A7%82%E9%94%81%E3%80%81%E6%82%B2%E8%A7%82%E9%94%81/
 https://xiaooyi.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/
 https://xiaooyi.github.io/tags/Redisson%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/
+https://xiaooyi.github.io/tags/Make/
+https://xiaooyi.github.io/tags/Hello-World/
+https://xiaooyi.github.io/tags/MySQL/
+https://xiaooyi.github.io/tags/algorithm/
 https://xiaooyi.github.io/tags/Vue/
-https://xiaooyi.github.io/tags/Office/
 https://xiaooyi.github.io/tags/%E6%B4%BB%E7%9D%80%E7%9A%84%E6%84%8F%E4%B9%89/
 https://xiaooyi.github.io/categories/LeetCode/
 https://xiaooyi.github.io/categories/%E5%9F%BA%E7%A1%80/
@@ -79,6 +79,6 @@ https://xiaooyi.github.io/categories/Java/
 https://xiaooyi.github.io/categories/%E9%9A%8F%E7%AC%94%E6%9D%82%E8%B0%88/
 https://xiaooyi.github.io/categories/Weekly/
 https://xiaooyi.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/
-https://xiaooyi.github.io/categories/%E5%85%AD%E7%BA%A7%EF%BC%9F%E5%85%AD%E7%BA%A7%EF%BC%81%EF%BC%81%EF%BC%81/
 https://xiaooyi.github.io/categories/History/
 https://xiaooyi.github.io/categories/%E5%89%8D%E7%AB%AF/
+https://xiaooyi.github.io/categories/%E5%85%AD%E7%BA%A7%EF%BC%9F%E5%85%AD%E7%BA%A7%EF%BC%81%EF%BC%81%EF%BC%81/
