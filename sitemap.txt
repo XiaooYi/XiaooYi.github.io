@@ -1,5 +1,6 @@
-https://xiaooyi.github.io/Weekly/
+https://xiaooyi.github.io/2025/10/04/Weekly-3-%E5%9B%BD%E5%BA%86%E5%B0%8F%E9%95%BF%E5%81%87/
 https://xiaooyi.github.io/2025/09/25/Weekly-2%EF%BC%9A%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB%E5%88%9D%E4%BD%93%E9%AA%8C/
+https://xiaooyi.github.io/Weekly/
 https://xiaooyi.github.io/2025/09/16/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/
 https://xiaooyi.github.io/2025/09/03/Java%E6%95%B0%E7%BB%84%E5%88%9D%E5%A7%8B%E5%8C%96%E5%9D%91%E7%82%B9/
 https://xiaooyi.github.io/about/
@@ -55,13 +56,11 @@ https://xiaooyi.github.io/
 https://xiaooyi.github.io/google2bddc3204a23b47c
 https://xiaooyi.github.io/resources/
 https://xiaooyi.github.io/
+https://xiaooyi.github.io/tags/Git/
 https://xiaooyi.github.io/tags/%E8%AE%A1%E7%BD%91/
 https://xiaooyi.github.io/tags/Java/
 https://xiaooyi.github.io/tags/Java8%E7%89%B9%E6%80%A7/
-https://xiaooyi.github.io/tags/Git/
 https://xiaooyi.github.io/tags/%E5%8F%A4%E8%AF%97%E8%AF%8D/
-https://xiaooyi.github.io/tags/Office/
-https://xiaooyi.github.io/tags/Hello-World/
 https://xiaooyi.github.io/tags/Redis/
 https://xiaooyi.github.io/tags/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/
 https://xiaooyi.github.io/tags/%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9/
@@ -69,9 +68,11 @@ https://xiaooyi.github.io/tags/%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF/
 https://xiaooyi.github.io/tags/%E4%B9%90%E8%A7%82%E9%94%81%E3%80%81%E6%82%B2%E8%A7%82%E9%94%81/
 https://xiaooyi.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/
 https://xiaooyi.github.io/tags/Redisson%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/
+https://xiaooyi.github.io/tags/Office/
 https://xiaooyi.github.io/tags/Weekly/
-https://xiaooyi.github.io/tags/Make/
+https://xiaooyi.github.io/tags/Hello-World/
 https://xiaooyi.github.io/tags/MySQL/
+https://xiaooyi.github.io/tags/Make/
 https://xiaooyi.github.io/tags/algorithm/
 https://xiaooyi.github.io/tags/Vue/
 https://xiaooyi.github.io/tags/%E6%B4%BB%E7%9D%80%E7%9A%84%E6%84%8F%E4%B9%89/
@@ -82,5 +83,5 @@ https://xiaooyi.github.io/categories/%E9%9A%8F%E7%AC%94%E6%9D%82%E8%B0%88/
 https://xiaooyi.github.io/categories/Weekly/
 https://xiaooyi.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/
 https://xiaooyi.github.io/categories/%E5%85%AD%E7%BA%A7%EF%BC%9F%E5%85%AD%E7%BA%A7%EF%BC%81%EF%BC%81%EF%BC%81/
-https://xiaooyi.github.io/categories/History/
 https://xiaooyi.github.io/categories/%E5%89%8D%E7%AB%AF/
+https://xiaooyi.github.io/categories/History/

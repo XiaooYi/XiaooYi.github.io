@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Weekly#3: 国庆小长假</title>
+      <link href="//2025/10/04/Weekly-3-%E5%9B%BD%E5%BA%86%E5%B0%8F%E9%95%BF%E5%81%87/"/>
+      <url>//2025/10/04/Weekly-3-%E5%9B%BD%E5%BA%86%E5%B0%8F%E9%95%BF%E5%81%87/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/2025/10/04/Weekly-3-%E5%9B%BD%E5%BA%86%E5%B0%8F%E9%95%BF%E5%81%87/%E5%B0%81%E9%9D%A2%E5%9B%BE.jpg"></p><center> 夜晚的景色，荫马塘、超算、研究楼路口</center><h1 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h1><p>这周主要做了两件事。</p><p>第一是对密码软件开发的流程进行了熟悉，在本地跑通并验证了正确性，下一步就是开发10种密码函数了。虽然这需要用超算的平台，但是我还没有账号。</p><p>第二是MybatisPlus的学习。</p><p>1，掌握了 MybatisPlus 的基本操作，包括条件构造器，自定义 SQL，Mapper 层和 Service 层方法的使用，能够使用 MP 进行 CRUD 以及复杂语句的编写。其中最重要的是要能使用 Lambda 功能简化复杂的查询以及更新功能。</p><p>2，MP 扩展功能：静态工具 Db ，用来解决 Service 层循环调用出现的循环依赖问题。MP 的枚举处理器，用来解决枚举类型和数据库类型不能自动转换的问题。MP 的 JSON 类型处理器，用来解决 Java 中特殊字段类型与数据库类型转换的问题。以及代码生成和逻辑删除。</p><p>3，MP 插件功能。分页插件的配置以及常用的 API 。并且开发了通用的分页实体，以及对工具类进行了封装，方便以后的各个服务的调用。其中分页插件常用 API 其实就两个，如下：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">pageNo</span> <span class="operator">=</span> <span class="number">1</span>, pageSize = <span class="number">5</span>;</span><br><span class="line"><span class="comment">// 分页参数</span></span><br><span class="line">Page&lt;User&gt; page = Page.of(pageNo, pageSize);</span><br><span class="line"><span class="comment">// 排序参数, 通过OrderItem来指定</span></span><br><span class="line">page.addOrder(<span class="keyword">new</span> <span class="title class_">OrderItem</span>(<span class="string">&quot;balance&quot;</span>, <span class="literal">false</span>));</span><br><span class="line"></span><br><span class="line">userService.page(page); <span class="comment">// 好吧，虽然我也不知道此处为什么要贴代码，可能为了凑字数</span></span><br></pre></td></tr></table></figure><h1 id="大神"><a href="#大神" class="headerlink" title="大神"></a>大神</h1><p>无意刷到了 tmwilliamlin168  <a href="https://youtu.be/uGrBHohIgQY">大神打比赛的视频</a>，被其敏捷的思路以及超快的手速震撼到了。那一刻，我才知道，原来还可以敲这么快的嘛？！我自问思路比不上大神，就连码字的速度和准确度也望尘莫及。本菜鸡知耻而后勇，决定苦练码字速度。</p><h1 id="国庆假期"><a href="#国庆假期" class="headerlink" title="国庆假期"></a>国庆假期</h1><p>这个国庆假期没有去旅游，也没有回家，只是待在宿舍。10月1号和实验室的几个师兄去露营了一下午，玩了狼人杀和谁是卧底。10月3号晚上和同学去逛了一下后湖。除此之外，都宅在宿舍。在宿舍感受到了深深的孤独感，虽然人要学会独处，可能一个人真的太无聊了。假期前，学习的热情很高，每天感觉时间不够用。可真正到了假期，真的，一点也静不下心来去学，虽然还有好多东西没做。前后对比下来，我真正感受到了实验室早晨打卡的必要和好处以及合理性。这不仅仅是一个约束，更是给自己每周的学习时长提供了保障。在实验室，会有学习的氛围，你看到别人在学习，而你在看 NBA，在刷抖音，你会感到不好意思，你会放下手机也投入学习中。</p><p>10月2号，我竟然通宵了。这大概是我第二次通宵，第一次是去年跨年和室友在外边打麻将。具体原因不说，我来谈谈通宵的感受。这次体验下来，通宵一时爽，通宵后痛苦一天。你会明显感受到太阳穴两边很晕、很沉的眩晕感，感觉脑子要缺氧了。除此之外，眼睛也几乎睁不开，勉强睁开会及其痛苦。还有罪恶感，白天大好的时光全部用来补觉了。因此，坚决不能再通宵了。现在我发现我当时通宵的原因其实不算是个正当的原因，而是一个自我的贪婪、自我的幻想，渴望通过通宵这几个小时得到自己真正想要的，但是无论是通宵的时候去想，以及通宵后冷静下来想，我想要通过通宵达到的东西根本不可能实现。究其原因，只是当时自己的不甘和贪婪。</p><h1 id><a href="#" class="headerlink" title></a></h1>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Weekly#2：研究生生活初体验</title>
       <link href="//2025/09/25/Weekly-2%EF%BC%9A%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
       <url>//2025/09/25/Weekly-2%EF%BC%9A%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB%E5%88%9D%E4%BD%93%E9%AA%8C/</url>
