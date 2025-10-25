@@ -9,8 +9,37 @@
     <atom:link href="https://xiaooyi.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Sun, 12 Oct 2025 16:35:49 GMT</pubDate>
+    <pubDate>Sat, 25 Oct 2025 07:00:50 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Weekly#5: 忙碌的一周</title>
+      <link>https://xiaooyi.github.io/2025/10/19/Weekly-5-%E5%BF%99%E7%A2%8C%E7%9A%84%E4%B8%80%E5%91%A8/</link>
+      <guid>https://xiaooyi.github.io/2025/10/19/Weekly-5-%E5%BF%99%E7%A2%8C%E7%9A%84%E4%B8%80%E5%91%A8/</guid>
+      <pubDate>Sun, 19 Oct 2025 12:29:17 GMT</pubDate>
+      
+        
+        
+      <description>&lt;blockquote&gt;
+&lt;p&gt;即使一段重要的亲密关系终结，我们也往往能找到替代的伴侣（虽然新人和旧人爱可能有很大不同），并且新伴侣也仍然能满足我们的归属需要。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;所以对于失恋的朋友我要说，没有什么非你不可。莫泊桑在《月光》中写到，“我们所</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<blockquote><p>即使一段重要的亲密关系终结，我们也往往能找到替代的伴侣（虽然新人和旧人爱可能有很大不同），并且新伴侣也仍然能满足我们的归属需要。</p></blockquote><p>所以对于失恋的朋友我要说，没有什么非你不可。莫泊桑在《月光》中写到，“我们所爱的，常常不是一个人，而是爱情本身”。</p><h1 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h1><p>10.12~10.24，完成了10种密码模式的开发。其实还有两个有点小bug。</p><p>22号进行了组会汇报，复盘下来，我存在几个问题：1，语速时快时慢，逻辑稍微有些混乱，表达能力有待提高。目前每天在跟读训练，并尝试采用“自己讲给自己听”的模式锻炼；2，PPT流程图画的太慢，已经学了 draw.io 的绘图教程，大大提升了绘图效率。</p><p>微服务第3天课程终于收尾。</p><p>Leetcode 依旧一题没做，理由是时间不够。例如昨晚，7点回宿舍，看衣服花了太多时间，太难选，选不到自己喜欢且合适的。原定的晚上的每日一题和周报都没时间去做，周报拖到今天才写。解决办法是，尝试早起？🤣虽然感觉不太可能。</p><p>前段时间，大概天气未变冷时，1点~2点入睡，8点20分能起床。这几天，1 ~ 2 点入睡，9点才能起床。查了一下，是生物钟与光照的关联的原因。天气变冷后，</p><p>同样的8点20分的时间，阳光会更微弱，缺乏足够的光照刺激，大脑中褪黑素水平下降缓慢，身体收到的起床信号减弱，所以会比平常醒来的要晚。还有一个原因是，天气变冷，卧室温度更低，创造了更好的睡眠条件。在更舒适的温度下，睡眠更深、更沉，身体更不愿意离开温暖舒适的被窝，导致”赖床”时间增加。解决办法是，尝试提早半小时左右睡觉。</p>]]></content:encoded>
+      
+      
+      <category domain="https://xiaooyi.github.io/categories/Weekly/">Weekly</category>
+      
+      
+      <category domain="https://xiaooyi.github.io/tags/Weekly/">Weekly</category>
+      
+      
+      <comments>https://xiaooyi.github.io/2025/10/19/Weekly-5-%E5%BF%99%E7%A2%8C%E7%9A%84%E4%B8%80%E5%91%A8/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Weely#4: 对恋爱和爱情的看法</title>
@@ -246,31 +275,6 @@
       
       
       <comments>https://xiaooyi.github.io/2025/09/08/37%E8%A7%A3%E6%95%B0%E7%8B%AC/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>1971寻找图中是否存在路径</title>
-      <link>https://xiaooyi.github.io/2025/09/08/1971%E5%AF%BB%E6%89%BE%E5%9B%BE%E4%B8%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E8%B7%AF%E5%BE%84/</link>
-      <guid>https://xiaooyi.github.io/2025/09/08/1971%E5%AF%BB%E6%89%BE%E5%9B%BE%E4%B8%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E8%B7%AF%E5%BE%84/</guid>
-      <pubDate>Mon, 08 Sep 2025 13:22:52 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/find-if-path-exists-in-graph/description/&quot;&gt;1971. 寻找图中是否存在路径&lt;/a&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlig</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>Problem: <a href="https://leetcode.cn/problems/find-if-path-exists-in-graph/description/">1971. 寻找图中是否存在路径</a></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="type">int</span>[] pa;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">validPath</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span>[][] edges, <span class="type">int</span> source, <span class="type">int</span> destination)</span> &#123;</span><br><span class="line">        pa = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">        Arrays.setAll(pa, i -&gt; i);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>[] e : edges) &#123;</span><br><span class="line">           pa[find(e[<span class="number">0</span>])] = find(e[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> find(source) == find(destination);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">find</span><span class="params">(<span class="type">int</span> a)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (pa[a] == a) ? a : (pa[a] = find(pa[a]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="37解数独"><a href="#37解数独" class="headerlink" title="37解数独"></a>37解数独</h1><blockquote><p>Problem: <a href="https://leetcode.cn/problems/sudoku-solver/description/">37. 解数独</a></p></blockquote><p><strong>思路</strong>:</p><p>利用row[i][val]表示第i行有没有val出现。</p><p>利用col[j][val]表示第j列有没有val出现。</p><p>利用block[i &#x2F; 3][j &#x2F; 3][val]表示第（i&#x2F;3,j&#x2F;3）个九宫格有没有val出现。</p><p>利用empCells存储尚未被填充的点。</p><p>首先取出empCells中的第一个点，digital从0~9填充，如果digital不在行，列，其所在九宫格中存在，则遍历下一个未被填充的点。直到填充结束。</p><p><strong>注意点</strong>:</p><p>1、在digital遍历的时候，需要加上 !valid 条件。也就是(int digital &#x3D; 0; digital &lt; 9 &amp;&amp; !valid; digital ++)。为什么？</p><p>因为如果不加这个条件，假设找到数独的解时，整个dfs还未完成。就要进行回溯，回溯的时候会将先前已经遍历过的digital设置为false。这样的话，当回溯到某个点时，该点的digital从k~9遍历（k是未被遍历过的第一个数字），而恰好在之前回溯过程中，k被设置为false，k在该点的行，列，所在九宫格中均为出现，那么k就会覆盖之前的解中的board[i][j]，使得解出错。</p><p>举个例子，如下图。dfs在最后的红色1处找到解。此时进行回溯。它一定会回溯到蓝色的1处。这时，由于1下方的7和有方的7都已经被释放了。那么这个时候蓝色的1处就可以填充7，然后接着遍历。就会覆盖正确解的数值。因为board[i][j]在回溯的时候，我们并没有进行对board[i][j]恢复现场。我们仅仅采用了覆盖之前值的方式来回溯。</p><p><img src="https://pic.leetcode.cn/1756974727-uJnoGq-image.png" alt="img"></p><p>2、不能使用队列来存储未被确定的点。因为频繁的出队、入队，相当耗时。</p><p>是的，自己看图吧。说多了都是泪。</p><p><img src="https://pic.leetcode.cn/1756975019-HZCsZX-image.png" alt="img"></p><p><img src="https://pic.leetcode.cn/1756975068-IOdpZS-image.png" alt="img"></p><p><strong>Code</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span>[][] row = <span class="keyword">new</span> <span class="title class_">boolean</span>[<span class="number">9</span>][<span class="number">9</span>];</span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span>[][] col = <span class="keyword">new</span> <span class="title class_">boolean</span>[<span class="number">9</span>][<span class="number">9</span>];</span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span>[][][] block = <span class="keyword">new</span> <span class="title class_">boolean</span>[<span class="number">3</span>][<span class="number">3</span>][<span class="number">9</span>];</span><br><span class="line">    List&lt;<span class="type">int</span>[]&gt; empCells = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;<span class="type">int</span>[]&gt;(); </span><br><span class="line">    <span class="type">boolean</span> valid;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">solveSudoku</span><span class="params">(<span class="type">char</span>[][] board)</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">9</span>; i ++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">9</span>; j ++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (board[i][j] == <span class="string">&#x27;.&#x27;</span>) &#123;</span><br><span class="line">                    empCells.add(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;i, j&#125;);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="type">int</span> <span class="variable">digital</span> <span class="operator">=</span> board[i][j] - <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">                    row[i][digital] = col[j][digital] = block[i / <span class="number">3</span>][j / <span class="number">3</span>][digital] = <span class="literal">true</span>; </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        dfs(board, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">char</span>[][] board,<span class="type">int</span> index)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (index == empCells.size()) &#123;</span><br><span class="line">            valid = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span>[] e = empCells.get(index);</span><br><span class="line">        <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> e[<span class="number">0</span>], y = e[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">9</span> &amp;&amp; !valid; i ++) &#123; <span class="comment">//已经找到解，就不再遍历了，不然会覆盖掉解</span></span><br><span class="line">            <span class="keyword">if</span> (!row[x][i] &amp;&amp; !col[y][i] &amp;&amp; !block[x / <span class="number">3</span>][y / <span class="number">3</span>][i]) &#123;</span><br><span class="line">                row[x][i] = col[y][i] = block[x / <span class="number">3</span>][y / <span class="number">3</span>][i] = <span class="literal">true</span>;</span><br><span class="line">                board[x][y] = (<span class="type">char</span>) (<span class="string">&#x27;1&#x27;</span> + i);</span><br><span class="line">                dfs(board, index + <span class="number">1</span>);</span><br><span class="line">                row[x][i] = col[y][i] = block[x / <span class="number">3</span>][y / <span class="number">3</span>][i] = <span class="literal">false</span>; </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content:encoded>
-      
-      
-      <category domain="https://xiaooyi.github.io/categories/LeetCode/">LeetCode</category>
-      
-      
-      
-      <comments>https://xiaooyi.github.io/2025/09/08/1971%E5%AF%BB%E6%89%BE%E5%9B%BE%E4%B8%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E8%B7%AF%E5%BE%84/#disqus_thread</comments>
       
     </item>
     
