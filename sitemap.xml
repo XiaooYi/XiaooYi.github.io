@@ -551,7 +551,7 @@
 
   
   <url>
-    <loc>https://xiaooyi.github.io/tags/Git/</loc>
+    <loc>https://xiaooyi.github.io/tags/%E8%AE%A1%E7%BD%91/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -572,7 +572,7 @@
   </url>
   
   <url>
-    <loc>https://xiaooyi.github.io/tags/%E8%AE%A1%E7%BD%91/</loc>
+    <loc>https://xiaooyi.github.io/tags/Git/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -580,20 +580,6 @@
   
   <url>
     <loc>https://xiaooyi.github.io/tags/%E5%8F%A4%E8%AF%97%E8%AF%8D/</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xiaooyi.github.io/tags/Office/</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xiaooyi.github.io/tags/Weekly/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -649,6 +635,20 @@
   </url>
   
   <url>
+    <loc>https://xiaooyi.github.io/tags/Office/</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xiaooyi.github.io/tags/Weekly/</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://xiaooyi.github.io/tags/Hello-World/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -663,14 +663,14 @@
   </url>
   
   <url>
-    <loc>https://xiaooyi.github.io/tags/algorithm/</loc>
+    <loc>https://xiaooyi.github.io/tags/MySQL/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://xiaooyi.github.io/tags/MySQL/</loc>
+    <loc>https://xiaooyi.github.io/tags/algorithm/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -742,14 +742,14 @@
   </url>
   
   <url>
-    <loc>https://xiaooyi.github.io/categories/History/</loc>
+    <loc>https://xiaooyi.github.io/categories/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://xiaooyi.github.io/categories/%E5%89%8D%E7%AB%AF/</loc>
+    <loc>https://xiaooyi.github.io/categories/History/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
