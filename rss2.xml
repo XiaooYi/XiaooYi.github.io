@@ -9,8 +9,38 @@
     <atom:link href="https://xiaooyi.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Wed, 05 Nov 2025 16:16:42 GMT</pubDate>
+    <pubDate>Sat, 08 Nov 2025 10:43:32 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>微服务学习笔记</title>
+      <link>https://xiaooyi.github.io/2025/11/08/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <guid>https://xiaooyi.github.io/2025/11/08/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <pubDate>Sat, 08 Nov 2025 10:40:54 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;本篇文章讨论了微服务相关知识，包括单体架构与微服务架构的特点、微服务拆分方法、服务调用、注册与发现、以及 OpenFeign 的使用等内容。关键要点包括：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;微服务的&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;什么是微服务&quot;&gt;&lt;a href=&quot;#什么是微</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>本篇文章讨论了微服务相关知识，包括单体架构与微服务架构的特点、微服务拆分方法、服务调用、注册与发现、以及 OpenFeign 的使用等内容。关键要点包括：</p><ol><li>微服务的</li></ol><h1 id="什么是微服务"><a href="#什么是微服务" class="headerlink" title="什么是微服务"></a>什么是微服务</h1><h2 id="单体架构"><a href="#单体架构" class="headerlink" title="单体架构"></a>单体架构</h2><p>整个项目的所有功能模块都在一个工程中开发，项目部署时需要对所有模块一起编译、打包。如下图所示：</p><p><img src="/2025/11/08/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/.%5C%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C1.png"></p><p>优点：当项目规模较小时，这种模式上手快，部署、运维都很方便。</p><p>缺点：</p><ul><li>团队协作成本高</li><li>系统发布效率差：任何模块变更时都需要发布整个系统，而且模块之间耦合、制约比较多，修改一个模块需要对比多个其他模块，导致发布效率很差。</li><li>系统可用性差：单体架构各个功能模块会作为一个服务部署，相互之间会影响，一些热点服务会耗尽系统资源，导致其他服务低可用。</li></ul><h2 id="微服务架构"><a href="#微服务架构" class="headerlink" title="微服务架构"></a>微服务架构</h2><p>微服务架构是一种软件设计模式，通过将大型单体应用拆分成<strong>多个独立的小型服务</strong>，每个服务专注特定的业务功能。这种架构旨在提高系统的灵活性、可扩展性和可维护性。它满足以下核心要点：</p><ul><li>单一职责：一个服务负责一部分业务功能，其核心数据不依赖于其他模块</li><li>团队自治：每个微服务有自己独立的开发、测试、发布、运维人员</li><li>服务自治：每个微服务独立部署，访问自己独立的数据库。同时要做好服务隔离，避免对其他服务产生影响</li></ul><p>例如，上面图中的4个功能模块，我们可以拆分成商品、用户、交易、购物车这几个模块，分别交给不同的团队去开发，并独立部署：</p><p><img src="/2025/11/08/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/.%5C%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C2.png"></p><p>大家之前可能听说过分布式架构，<strong>分布式就是微服务的拆分过程，其实微服务架构正式分布式架构的一种最佳实践方案。</strong></p><p>虽然微服务能解决单体架构的问题，但是在拆分的过程中，也会面临其他的问题：</p><ul><li>如果出现跨服务的业务该怎么处理呢？</li><li>页面请求到底该访问哪个服务？</li><li>如何实现各个服务之间的隔离？</li></ul><h2 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h2><p>SpringCloud 框架就能解决这种问题。SprigCloud 框架可以说是目前 Java 领域最全的微服务组件的集合了。</p><p><img src="/2025/11/08/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/.%5C%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C3.png"></p><p>而 SpringCloud 是依托于 SpringBoot 的自动装配能力，两者版本有对应条件：</p><table><thead><tr><th align="left"><strong>SpringCloud版本</strong></th><th align="left"><strong>SpringBoot版本</strong></th></tr></thead><tbody><tr><td align="left"><a href="https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2022.0-Release-Notes">2022.0.x</a> aka Kilburn</td><td align="left">3.0.x</td></tr><tr><td align="left"><a href="https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2021.0-Release-Notes">2021.0.x</a> aka Jubilee</td><td align="left">2.6.x, 2.7.x (Starting with 2021.0.3)</td></tr><tr><td align="left"><a href="https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2020.0-Release-Notes">2020.0.x</a> aka Ilford</td><td align="left">2.4.x, 2.5.x (Starting with 2020.0.3)</td></tr><tr><td align="left"><a href="https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-Hoxton-Release-Notes">Hoxton</a></td><td align="left">2.2.x, 2.3.x (Starting with SR5)</td></tr><tr><td align="left"><a href="https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Greenwich-Release-Notes">Greenwich</a></td><td align="left">2.1.x</td></tr><tr><td align="left"><a href="https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Finchley-Release-Notes">Finchley</a></td><td align="left">2.0.x</td></tr><tr><td align="left"><a href="https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Edgware-Release-Notes">Edgware</a></td><td align="left">1.5.x</td></tr><tr><td align="left"><a href="https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Dalston-Release-Notes">Dalston</a></td><td align="left">1.5.x</td></tr></tbody></table><p>另外 Alibaba 的微服务产品 SpringCloudAlibaba 目前也成为了 SpringCloud 组件的一员。</p><p>我们要使用的话，在 父工程 hmall 的 pom.xml 中引入依赖：</p><p><img src="/2025/11/08/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/.%5C%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C4.png"></p><p>指定版本如下，这样后续使用的时候就无需指定版本了。</p><p><img src="/2025/11/08/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/.%5C%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C5.png"></p><h1 id="微服务拆分"><a href="#微服务拆分" class="headerlink" title="微服务拆分"></a>微服务拆分</h1><h2 id="微服务拆分原则"><a href="#微服务拆分原则" class="headerlink" title="微服务拆分原则"></a>微服务拆分原则</h2><h2 id="拆分商品、购物车服务"><a href="#拆分商品、购物车服务" class="headerlink" title="拆分商品、购物车服务"></a>拆分商品、购物车服务</h2><h2 id="服务的远程调用"><a href="#服务的远程调用" class="headerlink" title="服务的远程调用"></a>服务的远程调用</h2><h1 id="服务的注册与发现"><a href="#服务的注册与发现" class="headerlink" title="服务的注册与发现"></a>服务的注册与发现</h1><p>上一章我们实现了微服务的拆分，并且通过 Http 请求实现了跨微服务的远程调用。不过这种手动发送 Http 请求的方式存在几个问题。</p><p>试想一下，如果商品微服务调用过多，为了应对高并发我们进行了多实例部署，如下图：</p><p><img src="/2025/11/08/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/.%5C%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C6.png"></p><p>此时，每个<code>item-service</code>的实例其IP或端口不同，问题来了：</p><ul><li>item-service这么多实例，cart-service如何知道每一个实例的地址？</li><li>http请求要写url地址，<code>cart-service</code>服务到底该调用哪个实例呢？</li><li>如果在运行过程中，某一个<code>item-service</code>实例宕机，<code>cart-service</code>依然在调用该怎么办？</li><li>如果并发太高，<code>item-service</code>临时多部署了N台实例，<code>cart-service</code>如何知道新实例的地址？</li></ul><p>为了解决上述问题，就必须引入注册中心的概念了。</p><h2 id="注册中心原理"><a href="#注册中心原理" class="headerlink" title="注册中心原理"></a>注册中心原理</h2><p>在微服务调用的过程中，包括两个角色：</p><ul><li>服务提供者：提供接口功其他服务访问，如 item-service</li><li>服务调用者：调用其他服务提供的接口，如 cart-service</li></ul><p>而为了应对在大型微服务项目中服务提供者数量太多，微服务不好管理的问题，就引入了注册中心的概念。三者关系如下：</p><p><img src="/2025/11/08/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/.%5C%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%AC%94%E8%AE%B0%5C7.png"></p>]]></content:encoded>
+      
+      
+      <category domain="https://xiaooyi.github.io/categories/Java/">Java</category>
+      
+      
+      <category domain="https://xiaooyi.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</category>
+      
+      
+      <comments>https://xiaooyi.github.io/2025/11/08/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Weekly#6&amp;7: 真不知道起什么标题 </title>
@@ -250,33 +280,6 @@
       
       
       <comments>https://xiaooyi.github.io/2025/09/08/3495%E4%BD%BF%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E5%8F%98%E4%B8%BA%E9%9B%B6%E7%9A%84%E6%9C%80%E5%B0%8F%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>853车队</title>
-      <link>https://xiaooyi.github.io/2025/09/08/853%E8%BD%A6%E9%98%9F/</link>
-      <guid>https://xiaooyi.github.io/2025/09/08/853%E8%BD%A6%E9%98%9F/</guid>
-      <pubDate>Mon, 08 Sep 2025 13:24:24 GMT</pubDate>
-      
-        
-        
-      <description>&lt;blockquote&gt;
-&lt;p&gt;Problem: &lt;a href=&quot;https://leetcode.cn/problems/car-fleet/description/&quot;&gt;853. 车队&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;思路&lt;/strong&gt;:</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<blockquote><p>Problem: <a href="https://leetcode.cn/problems/car-fleet/description/">853. 车队</a></p></blockquote><p><strong>思路</strong>:</p><p>采用单调递减栈，单调栈中存放所有可能的车队到达终点需要的时间。（注意，只保存位置最大的那个车辆，也就是车队中速度最慢的车辆）。我们需要对数组按照postion升序排列，然后从左到右遍历。</p><p>如果当前车辆到达时间大于等于栈顶车辆的时间，说明栈顶车辆能追上当前车辆，将栈顶车辆弹出，当前车辆入栈，将它两合并成一个车队。如果当前车辆到达时间小于栈顶车辆达到时间，说明栈顶车辆追不上当前车辆，那么将当前车辆入栈。循环结束后，单调栈的大小就是车队的数量。</p><p><strong>复杂度</strong></p><ul><li>时间复杂度: O(nlog(n))，瓶颈在排序的复杂度上。当然，也可以采用空间换时间的方法，利用target大小的数组来保存数据。</li><li>空间复杂度: O(n)</li></ul><p><strong>Code</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">carFleet</span><span class="params">(<span class="type">int</span> target, <span class="type">int</span>[] position, <span class="type">int</span>[] speed)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> position.length;</span><br><span class="line">        <span class="type">int</span>[][] traffic = <span class="keyword">new</span> <span class="title class_">int</span>[n][<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">            traffic[i][<span class="number">0</span>] = position[i];</span><br><span class="line">            traffic[i][<span class="number">1</span>] = speed[i];</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(traffic, (a, b) -&gt; Integer.compare(a[<span class="number">0</span>], b[<span class="number">0</span>]));</span><br><span class="line">        Deque&lt;Double&gt; st = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">            <span class="type">double</span> <span class="variable">time</span> <span class="operator">=</span> (<span class="type">double</span>) (target - traffic[i][<span class="number">0</span>]) / traffic[i][<span class="number">1</span>];  </span><br><span class="line">            <span class="keyword">while</span> (!st.isEmpty() &amp;&amp; st.peek() &lt;= time) &#123;</span><br><span class="line">                st.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            st.push(time);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> st.size();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content:encoded>
-      
-      
-      <category domain="https://xiaooyi.github.io/categories/LeetCode/">LeetCode</category>
-      
-      
-      
-      <comments>https://xiaooyi.github.io/2025/09/08/853%E8%BD%A6%E9%98%9F/#disqus_thread</comments>
       
     </item>
     
